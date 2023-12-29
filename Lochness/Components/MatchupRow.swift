@@ -43,7 +43,9 @@ struct MatchupRow: View {
             HStack {
                 ForEach(vm.allBetOptions.filter({$0.game.id == game.id}).prefix(3)) { betOption in
                     Button {
-                        vm.makeBet(from: betOption)
+                        Task {
+                            try await vm.addBet(from: betOption)
+                        }
                     } label: {
                         Text(betOption.betString)
                             .font(.caption2.bold())
@@ -55,9 +57,11 @@ struct MatchupRow: View {
                 }
             }
             HStack {
-                ForEach(vm.allBetOptions.filter({$0.game.id == game.id}).prefix(3)) { betOption in
+                ForEach(vm.allBetOptions.filter({$0.game.id == game.id}).suffix(3)) { betOption in
                     Button {
-                        vm.makeBet(from: betOption)
+                        Task {
+                            try await vm.addBet(from: betOption)
+                        }
                     } label: {
                         Text(betOption.betString)
                             .font(.caption2.bold())

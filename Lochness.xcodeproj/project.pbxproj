@@ -20,6 +20,9 @@
 		3E5C23272B3CBD1D00B642BB /* nflScoresData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E5C23262B3CBD1D00B642BB /* nflScoresData.json */; };
 		3E5C23292B3CC4B200B642BB /* ScoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5C23282B3CC4B200B642BB /* ScoreService.swift */; };
 		3E5C232B2B3CC98500B642BB /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5C232A2B3CC98500B642BB /* Score.swift */; };
+		3E9256A12B3E02E80088E501 /* LochnessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9256A02B3E02E80088E501 /* LochnessTests.swift */; };
+		3E9256A62B3E03160088E501 /* GameServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9256A52B3E03160088E501 /* GameServiceTests.swift */; };
+		3E9256AD2B3E52520088E501 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9256AC2B3E52520088E501 /* Helpers.swift */; };
 		3E9874182B37159E00A8FAF1 /* LochnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9874172B37159E00A8FAF1 /* LochnessApp.swift */; };
 		3E98741C2B37159F00A8FAF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E98741B2B37159F00A8FAF1 /* Assets.xcassets */; };
 		3E98741F2B37159F00A8FAF1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E98741E2B37159F00A8FAF1 /* Preview Assets.xcassets */; };
@@ -35,6 +38,16 @@
 		3EFF21072B3893D500952416 /* MatchupRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF21062B3893D500952416 /* MatchupRow.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3E9256A72B3E04310088E501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E98740C2B37159E00A8FAF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E9874132B37159E00A8FAF1;
+			remoteInfo = Lochness;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3E51AD052B3C5FD10059E23C /* nflOddsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = nflOddsData.json; sourceTree = "<group>"; };
 		3E51AD072B3C7E170059E23C /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
@@ -43,6 +56,10 @@
 		3E5C23262B3CBD1D00B642BB /* nflScoresData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = nflScoresData.json; sourceTree = "<group>"; };
 		3E5C23282B3CC4B200B642BB /* ScoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreService.swift; sourceTree = "<group>"; };
 		3E5C232A2B3CC98500B642BB /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		3E92569E2B3E02E80088E501 /* LochnessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LochnessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E9256A02B3E02E80088E501 /* LochnessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LochnessTests.swift; sourceTree = "<group>"; };
+		3E9256A52B3E03160088E501 /* GameServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceTests.swift; sourceTree = "<group>"; };
+		3E9256AC2B3E52520088E501 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		3E9874142B37159E00A8FAF1 /* Lochness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lochness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9874172B37159E00A8FAF1 /* LochnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LochnessApp.swift; sourceTree = "<group>"; };
 		3E98741B2B37159F00A8FAF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,6 +77,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3E92569B2B3E02E80088E501 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E9874112B37159E00A8FAF1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,10 +100,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E92569F2B3E02E80088E501 /* LochnessTests */ = {
+			isa = PBXGroup;
+			children = (
+				3E9256A52B3E03160088E501 /* GameServiceTests.swift */,
+				3E9256A02B3E02E80088E501 /* LochnessTests.swift */,
+			);
+			path = LochnessTests;
+			sourceTree = "<group>";
+		};
+		3E9256A92B3E04FC0088E501 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Testing;
+			sourceTree = "<group>";
+		};
 		3E98740B2B37159E00A8FAF1 = {
 			isa = PBXGroup;
 			children = (
 				3E9874162B37159E00A8FAF1 /* Lochness */,
+				3E92569F2B3E02E80088E501 /* LochnessTests */,
 				3E9874152B37159E00A8FAF1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				3E9874142B37159E00A8FAF1 /* Lochness.app */,
+				3E92569E2B3E02E80088E501 /* LochnessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +145,7 @@
 				3E9874312B3781F500A8FAF1 /* Views */,
 				3E9874332B3781FE00A8FAF1 /* Services */,
 				3E9874342B37822E00A8FAF1 /* Utilities */,
+				3E9256A92B3E04FC0088E501 /* Testing */,
 				3E51AD092B3C88AA0059E23C /* GoogleService-Info.plist */,
 				3E98741B2B37159F00A8FAF1 /* Assets.xcassets */,
 				3E98741D2B37159F00A8FAF1 /* Preview Content */,
@@ -162,6 +205,7 @@
 				3E5C23222B3CAB6000B642BB /* FirebaseManager.swift */,
 				3E51AD052B3C5FD10059E23C /* nflOddsData.json */,
 				3E5C23262B3CBD1D00B642BB /* nflScoresData.json */,
+				3E9256AC2B3E52520088E501 /* Helpers.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -186,6 +230,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3E92569D2B3E02E80088E501 /* LochnessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E9256A22B3E02E80088E501 /* Build configuration list for PBXNativeTarget "LochnessTests" */;
+			buildPhases = (
+				3E92569A2B3E02E80088E501 /* Sources */,
+				3E92569B2B3E02E80088E501 /* Frameworks */,
+				3E92569C2B3E02E80088E501 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E9256A82B3E04310088E501 /* PBXTargetDependency */,
+			);
+			name = LochnessTests;
+			productName = LochnessTests;
+			productReference = 3E92569E2B3E02E80088E501 /* LochnessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3E9874132B37159E00A8FAF1 /* Lochness */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E9874222B37159F00A8FAF1 /* Build configuration list for PBXNativeTarget "Lochness" */;
@@ -221,6 +283,10 @@
 				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
+					3E92569D2B3E02E80088E501 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 3E9874132B37159E00A8FAF1;
+					};
 					3E9874132B37159E00A8FAF1 = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -243,11 +309,19 @@
 			projectRoot = "";
 			targets = (
 				3E9874132B37159E00A8FAF1 /* Lochness */,
+				3E92569D2B3E02E80088E501 /* LochnessTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3E92569C2B3E02E80088E501 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E9874122B37159E00A8FAF1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,6 +337,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3E92569A2B3E02E80088E501 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E9256A12B3E02E80088E501 /* LochnessTests.swift in Sources */,
+				3E9256A62B3E03160088E501 /* GameServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E9874102B37159E00A8FAF1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,6 +361,7 @@
 				3EFF21072B3893D500952416 /* MatchupRow.swift in Sources */,
 				3E98742E2B37168C00A8FAF1 /* NetworkingManager.swift in Sources */,
 				3EFF21022B388EEE00952416 /* Double.swift in Sources */,
+				3E9256AD2B3E52520088E501 /* Helpers.swift in Sources */,
 				3EFF20FF2B388E0900952416 /* Bet.swift in Sources */,
 				3E51AD082B3C7E170059E23C /* Preview.swift in Sources */,
 				3E5C23292B3CC4B200B642BB /* ScoreService.swift in Sources */,
@@ -287,7 +371,61 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3E9256A82B3E04310088E501 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E9874132B37159E00A8FAF1 /* Lochness */;
+			targetProxy = 3E9256A72B3E04310088E501 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3E9256A32B3E02E80088E501 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G9RPYMS2PA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devsmond.LochnessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lochness.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lochness";
+				TVOS_DEPLOYMENT_TARGET = 17.2;
+			};
+			name = Debug;
+		};
+		3E9256A42B3E02E80088E501 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G9RPYMS2PA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devsmond.LochnessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lochness.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lochness";
+				TVOS_DEPLOYMENT_TARGET = 17.2;
+			};
+			name = Release;
+		};
 		3E9874202B37159F00A8FAF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -340,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -397,7 +535,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -423,6 +561,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,6 +591,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,6 +608,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3E9256A22B3E02E80088E501 /* Build configuration list for PBXNativeTarget "LochnessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E9256A32B3E02E80088E501 /* Debug */,
+				3E9256A42B3E02E80088E501 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3E98740F2B37159E00A8FAF1 /* Build configuration list for PBXProject "Lochness" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

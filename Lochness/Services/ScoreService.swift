@@ -49,7 +49,6 @@ class ScoreService {
         if let scoreReference {
             self.scoresListener = FirebaseManager.fetch(query: scoreReference, convert: parseScoreFromDocument(_:)) { [weak self] scores in
                 self?.allScores = scores
-                print(scores.map {$0.awayScore ?? "NO"})
             }
         }
     }

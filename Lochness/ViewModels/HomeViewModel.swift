@@ -50,7 +50,7 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    public func makeBet(from betOption: BetOption) {
-        betService.makeBet(from: betOption)
+    func addBet(from betOption: BetOption) async throws {
+        try await betService.add(bet: betService.makeBet(from: betOption))
     }
 }

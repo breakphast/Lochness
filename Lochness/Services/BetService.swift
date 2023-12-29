@@ -8,14 +8,82 @@
 import Foundation
 import SwiftUI
 import Combine
+import Firebase
 
 class BetService {
     @Published var allBets = [Bet]()
-        
-    public func makeBet(from betOption: BetOption) {
-        let bet = Bet(type: betOption.betType, line: betOption.line ?? nil, odds: betOption.odds, team: betOption.selectedTeam ?? nil, playerID: "1234", leagueCode: "1234", timestamp: Date())
-        
-        self.allBets.append(bet)
-        print(self.allBets.count)
+    
+    private var betSubscription: AnyCancellable?
+    private var betsListener: ListenerRegistration?
+    private var betReference: CollectionReference?
+    
+    private var db = Firestore.firestore()
+    
+    init() {
+        self.betReference = db.collection("bets")
+        getBetsFromFirestore()
     }
+        
+    func makeBet(from betOption: BetOption) -> Bet {
+        return Bet(type: betOption.betType.rawValue, result: BetResult.pending.rawValue, line: betOption.line ?? nil, odds: betOption.odds, points: 10, team: betOption.selectedTeam ?? nil, playerID: "01", leagueCode: "02", timestamp: Date(), gameID: betOption.game.id)
+    }
+    
+    // MARK: Firebase Functions
+    func add(bet: Bet) async throws {
+        guard let betReference else { return }
+        
+        let documentRef = betReference.document(bet.id.uuidString)
+        
+        do {
+            let data = try Helpers.encoder.encode(bet)
+            if let betDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                try await documentRef.setData(betDictionary)
+                print("Bet added successfully")
+            }
+        } catch {
+            print("Error encoding bet: \(error.localizedDescription)")
+        }
+    }
+    
+    private func getBetsFromFirestore() {
+        if let betReference {
+            self.betsListener = FirebaseManager.fetch(query: betReference, convert: parseBetFromDocument(_:)) { [weak self] bets in
+                self?.allBets = bets
+                print("Bet count:", bets.count)
+            }
+        }
+    }
+    
+    private func parseBetFromDocument(_ document: QueryDocumentSnapshot) -> Bet {
+        let data = document.data()
+
+        let id = data["id"] as? String ?? UUID().uuidString
+        let type = data["type"] as? String ?? ""
+        let result = data["result"] as? String ?? "Pending"
+        let line = data["line"] as? Double
+        let odds = data["odds"] as? Int ?? 0
+        let points = data["points"] as? Double ?? 0.0
+        let stake = data["stake"] as? Double ?? 100.0
+        let team = data["team"] as? String
+        let playerID = data["playerID"] as? String ?? ""
+        let leagueCode = data["leagueCode"] as? String ?? ""
+        let timestamp = data["timestamp"] as? Date ?? Date()
+        let gameID = data["gameID"] as? String ?? ""
+
+        return Bet(
+            id: UUID(uuidString: id) ?? UUID(),
+            type: type,
+            result: result,
+            line: line,
+            odds: odds,
+            points: points,
+            stake: stake,
+            team: team,
+            playerID: playerID,
+            leagueCode: leagueCode,
+            timestamp: timestamp,
+            gameID: gameID
+        )
+    }
+
 }

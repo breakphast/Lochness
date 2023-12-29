@@ -18,14 +18,10 @@ class GameService {
     private var gamesListener: ListenerRegistration?
     private var gameReference: CollectionReference?
     
-    private var decoder = JSONDecoder()
-    private var encoder = JSONEncoder()
     private var db = Firestore.firestore()
     
     init() {
-        decoder.dateDecodingStrategy = .iso8601
         self.gameReference = db.collection("games")
-        
         getGamesFromFirestore()
     }
     
@@ -36,7 +32,7 @@ class GameService {
         let documentRef = gameReference.document(game.id)
         
         do {
-            let data = try encoder.encode(game)
+            let data = try Helpers.encoder.encode(game)
             if let gameDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 try await documentRef.setData(gameDictionary)
                 print("Game added successfully")
@@ -57,8 +53,9 @@ class GameService {
     private func getGamesFromFirestore() {
         if let gameReference {
             self.gamesListener = FirebaseManager.fetch(query: gameReference, convert: parseGameFromDocument(_:)) { [weak self] games in
-                self?.allGames = games
+                self?.allGames = games.sorted(by: { $0.date < $1.date })
                 self?.allBetOptions = games.flatMap { self?.generateBetOptions(game: $0) ?? [] }
+                print("Game listener triggered.")
             }
         }
     }
@@ -118,7 +115,7 @@ class GameService {
     
     private func getGamesLocally() {
         gameSubscription = loadLocalNFLData()
-            .decode(type: [GameElement].self, decoder: decoder)
+            .decode(type: [GameElement].self, decoder: Helpers.decoder)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedGames in
                 guard let self = self else { return }
                 
@@ -144,7 +141,7 @@ class GameService {
         }
         
         gameSubscription = NetworkingManager.download(url: url)
-            .decode(type: [GameElement].self, decoder: decoder)
+            .decode(type: [GameElement].self, decoder: Helpers.decoder)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedGames in
                 let games = returnedGames.map { Game(gameElement: $0) }
                 self?.allGames = games
@@ -153,7 +150,7 @@ class GameService {
     }
         
     private func generateBetOptions(game: Game) -> [BetOption] {
-        return BetType.allCases.flatMap { type -> [BetOption] in
+        let options = BetType.allCases.flatMap { type -> [BetOption] in
             switch type {
             case .spread:
                 return [
@@ -171,5 +168,20 @@ class GameService {
                 return [BetOption(game: game, betType: type, odds: odds, line: line, selectedTeam: "\(game.awayTeam) @ \(game.homeTeam)")]
             }
         }
+        
+        if options.count >= 6 {
+            let reorderedOptions = [
+                options[0],
+                options[2],
+                options[4],
+                options[1],
+                options[3],
+                options[5]
+            ]
+            return reorderedOptions
+        } else {
+            return options
+        }
     }
+
 }

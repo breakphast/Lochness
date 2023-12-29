@@ -32,7 +32,7 @@ struct HomeView: View {
     private var betsListing: some View {
         ForEach(vm.allBets) { bet in
             VStack(alignment: .leading) {
-                Text(bet.type != .moneyline ? "\(bet.type) \(bet.line ?? 0.0)" : bet.type.rawValue)
+                Text(bet.type != BetType.moneyline.rawValue ? "\(bet.type) \(bet.line ?? 0.0)" : bet.type)
                 Text(String(bet.odds))
                 Text(bet.team ?? "")
             }

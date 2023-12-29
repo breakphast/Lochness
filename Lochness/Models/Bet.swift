@@ -7,18 +7,19 @@
 
 import Foundation
 
-struct Bet: Identifiable {
-    let id = UUID()
-    let type: BetType
-    let result: BetResult = .pending
+struct Bet: Identifiable, Codable {
+    var id = UUID()
+    let type: String
+    var result: String
     let line: Double?
     let odds: Int
-    var points: Double?
-    let stake = 100.0
+    var points: Double
+    var stake = 100.0
     let team: String?
     let playerID: String
     let leagueCode: String
-    let timestamp: Date?
+    let timestamp: Date
+    let gameID: String
 }
 
 enum BetResult: String {
