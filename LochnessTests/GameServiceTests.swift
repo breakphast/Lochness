@@ -81,18 +81,18 @@ class MockGameService {
             switch type {
             case .spread:
                 return [
-                    BetOption(game: game, betType: type, odds: Int(game.awaySpreadOdds), line: Double(game.awaySpreadLine), selectedTeam: game.awayTeam),
-                    BetOption(game: game, betType: type, odds: Int(game.homeSpreadOdds), line: Double(game.homeSpreadLine), selectedTeam: game.homeTeam)
+                    BetOption(game: game, betType: type, odds: Int(game.awaySpreadOdds), line: Double(game.awaySpreadLine), team: game.awayTeam),
+                    BetOption(game: game, betType: type, odds: Int(game.homeSpreadOdds), line: Double(game.homeSpreadLine), team: game.homeTeam)
                 ]
             case .moneyline:
                 return [
-                    BetOption(game: game, betType: type, odds: Int(game.awayMoneyLineOdds), selectedTeam: game.awayTeam),
-                    BetOption(game: game, betType: type, odds: Int(game.homeMoneyLineOdds), selectedTeam: game.homeTeam)
+                    BetOption(game: game, betType: type, odds: Int(game.awayMoneyLineOdds), team: game.awayTeam),
+                    BetOption(game: game, betType: type, odds: Int(game.homeMoneyLineOdds), team: game.homeTeam)
                 ]
             case .over, .under:
                 let odds = type == .over ? Int(game.overOdds) : Int(game.underOdds)
                 let line = type == .over ? Double(game.overLine) : Double(game.underLine)
-                return [BetOption(game: game, betType: type, odds: odds, line: line, selectedTeam: "\(game.awayTeam) @ \(game.homeTeam)")]
+                return [BetOption(game: game, betType: type, odds: odds, line: line, team: "\(game.awayTeam) @ \(game.homeTeam)")]
             }
         }
     }

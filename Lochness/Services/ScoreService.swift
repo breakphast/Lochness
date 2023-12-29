@@ -29,19 +29,9 @@ class ScoreService {
     }
     
     // MARK: Firebase Functions
-    private func add(score: Score) async throws {
-        guard let scoreReference else { return }
-        
-        let documentRef = scoreReference.document(score.id)
-        
-        do {
-            let data = try encoder.encode(score)
-            if let scoreDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                try await documentRef.setData(scoreDictionary)
-                print("Score added successfully")
-            }
-        } catch {
-            print("Error encoding score: \(error.localizedDescription)")
+    func add(score: Score) async throws {
+        if let scoreReference {
+            try await FirebaseManager.add(item: score, id: score.id, to: scoreReference)
         }
     }
     
@@ -94,6 +84,31 @@ class ScoreService {
 //                        }
 //                    }
 //                }
+            })
+    }
+    
+    private func getScores() {
+        guard let url = URL(string: "https://api.the-odds-api.com/v4/sports/americanfootball_nfl/scores/?daysFrom=3&apiKey=4361370f2df59d9c4aabf5b7ff5fd438") else {
+            return
+        }
+        
+        scoreSubscription = NetworkingManager.download(url: url)
+            .decode(type: [ScoreElement].self, decoder: decoder)
+            .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedScores in
+                guard let self = self else { return }
+
+                let scores = returnedScores.map { Score(scoreElement: $0) }
+                self.allScores = scores
+                
+                Task {
+                    for score in scores {
+                        do {
+                            try await self.add(score: score)
+                        } catch {
+                            print("Error adding score: \(error.localizedDescription)")
+                        }
+                    }
+                }
             })
     }
     

@@ -13,30 +13,35 @@ class BetOption: Identifiable {
     let betType: BetType
     var odds: Int
     var line: Double? = nil
-    var betString: String
-    var selectedTeam: String? = nil
+    var buttonText: String
+    var team: String
     
-    init(game: Game, betType: BetType, odds: Int, line: Double? = nil, selectedTeam: String? = nil) {
+    init(game: Game, betType: BetType, odds: Int, line: Double? = nil, team: String) {
         self.game = game
         self.betType = betType
         self.odds = odds
+        self.team = team
         
         let formattedOdds = odds > 0 ? "+\(odds)" : "\(odds)"
+        
+        if let line {
+            self.line = line
+        }
         
         switch betType {
         case .spread:
             if let line = line {
                 let formattedSpread = line > 0 ? "+\(line)" : "\(line)"
-                betString = "\(formattedSpread)\n\(formattedOdds)"
+                buttonText = "\(formattedSpread)\n\(formattedOdds)"
             } else {
-                betString = ""
+                buttonText = ""
             }
         case .moneyline:
-            betString = formattedOdds
+            buttonText = formattedOdds
         case .over:
-            betString = "O \(line ?? 0)\n\(formattedOdds)"
+            buttonText = "O \(line ?? 0)\n\(formattedOdds)"
         case .under:
-            betString = "U \(line ?? 0)\n\(formattedOdds)"
+            buttonText = "U \(line ?? 0)\n\(formattedOdds)"
         }
     }
 }

@@ -18,27 +18,20 @@ class GameService {
     private var gamesListener: ListenerRegistration?
     private var gameReference: CollectionReference?
     
+    private var decoder = JSONDecoder()
+    private var encoder = JSONEncoder()
     private var db = Firestore.firestore()
     
     init() {
+        decoder.dateDecodingStrategy = .iso8601
         self.gameReference = db.collection("games")
         getGamesFromFirestore()
     }
     
     // MARK: Firebase Functions
-    private func add(game: Game) async throws {
-        guard let gameReference else { return }
-        
-        let documentRef = gameReference.document(game.id)
-        
-        do {
-            let data = try Helpers.encoder.encode(game)
-            if let gameDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                try await documentRef.setData(gameDictionary)
-                print("Game added successfully")
-            }
-        } catch {
-            print("Error encoding game: \(error.localizedDescription)")
+    func add(game: Game) async throws {
+        if let gameReference {
+            try await FirebaseManager.add(item: game, id: game.id, to: gameReference)
         }
     }
     
@@ -91,16 +84,6 @@ class GameService {
     }
 
     // MARK: Network/Data Functions
-    func loadnflData() async throws -> Data {
-        guard let url = Bundle.main.url(forResource: "nflOddsData", withExtension: "json") else {
-            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to locate nflOddsData.json"])
-        }
-        
-        let (data, _) = try await URLSession.shared.data(from: url)
-        
-        return data
-    }
-    
     private func loadLocalNFLData() -> AnyPublisher<Data, Error> {
         guard let url = Bundle.main.url(forResource: "nflOddsData", withExtension: "json"),
               let data = try? Data(contentsOf: url) else {
@@ -115,7 +98,7 @@ class GameService {
     
     private func getGamesLocally() {
         gameSubscription = loadLocalNFLData()
-            .decode(type: [GameElement].self, decoder: Helpers.decoder)
+            .decode(type: [GameElement].self, decoder: decoder)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedGames in
                 guard let self = self else { return }
                 
@@ -141,7 +124,7 @@ class GameService {
         }
         
         gameSubscription = NetworkingManager.download(url: url)
-            .decode(type: [GameElement].self, decoder: Helpers.decoder)
+            .decode(type: [GameElement].self, decoder: decoder)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedGames in
                 let games = returnedGames.map { Game(gameElement: $0) }
                 self?.allGames = games
@@ -154,18 +137,18 @@ class GameService {
             switch type {
             case .spread:
                 return [
-                    BetOption(game: game, betType: type, odds: Int(game.awaySpreadOdds), line: Double(game.awaySpreadLine), selectedTeam: game.awayTeam),
-                    BetOption(game: game, betType: type, odds: Int(game.homeSpreadOdds), line: Double(game.homeSpreadLine), selectedTeam: game.homeTeam)
+                    BetOption(game: game, betType: type, odds: Int(game.awaySpreadOdds), line: Double(game.awaySpreadLine), team: game.awayTeam),
+                    BetOption(game: game, betType: type, odds: Int(game.homeSpreadOdds), line: Double(game.homeSpreadLine), team: game.homeTeam)
                 ]
             case .moneyline:
                 return [
-                    BetOption(game: game, betType: type, odds: Int(game.awayMoneyLineOdds), selectedTeam: game.awayTeam),
-                    BetOption(game: game, betType: type, odds: Int(game.homeMoneyLineOdds), selectedTeam: game.homeTeam)
+                    BetOption(game: game, betType: type, odds: Int(game.awayMoneyLineOdds), team: game.awayTeam),
+                    BetOption(game: game, betType: type, odds: Int(game.homeMoneyLineOdds), team: game.homeTeam)
                 ]
             case .over, .under:
                 let odds = type == .over ? Int(game.overOdds) : Int(game.underOdds)
                 let line = type == .over ? Double(game.overLine) : Double(game.underLine)
-                return [BetOption(game: game, betType: type, odds: odds, line: line, selectedTeam: "\(game.awayTeam) @ \(game.homeTeam)")]
+                return [BetOption(game: game, betType: type, odds: odds, line: line, team: "\(game.awayTeam) @ \(game.homeTeam)")]
             }
         }
         

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E411AC82B3EFC5000018750 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411AC72B3EFC5000018750 /* User.swift */; };
+		3E411ACA2B3EFF9600018750 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411AC92B3EFF9600018750 /* UserService.swift */; };
+		3E411ACC2B3F075700018750 /* BetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411ACB2B3F075700018750 /* BetComponent.swift */; };
 		3E51AD062B3C5FD10059E23C /* nflOddsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E51AD052B3C5FD10059E23C /* nflOddsData.json */; };
 		3E51AD082B3C7E170059E23C /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51AD072B3C7E170059E23C /* Preview.swift */; };
 		3E51AD0A2B3C88AA0059E23C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E51AD092B3C88AA0059E23C /* GoogleService-Info.plist */; };
@@ -49,6 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E411AC72B3EFC5000018750 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3E411AC92B3EFF9600018750 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		3E411ACB2B3F075700018750 /* BetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetComponent.swift; sourceTree = "<group>"; };
 		3E51AD052B3C5FD10059E23C /* nflOddsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = nflOddsData.json; sourceTree = "<group>"; };
 		3E51AD072B3C7E170059E23C /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		3E51AD092B3C88AA0059E23C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 				3ECB88E92B37D2B000AEDB4D /* BetOption.swift */,
 				3EFF20FE2B388E0900952416 /* Bet.swift */,
 				3E5C232A2B3CC98500B642BB /* Score.swift */,
+				3E411AC72B3EFC5000018750 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -194,6 +201,7 @@
 				3E9874292B37162900A8FAF1 /* GameService.swift */,
 				3EFF21032B388F2400952416 /* BetService.swift */,
 				3E5C23282B3CC4B200B642BB /* ScoreService.swift */,
+				3E411AC92B3EFF9600018750 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -223,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				3EFF21062B3893D500952416 /* MatchupRow.swift */,
+				3E411ACB2B3F075700018750 /* BetComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -350,13 +359,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E411ACC2B3F075700018750 /* BetComponent.swift in Sources */,
 				3E5C23232B3CAB6000B642BB /* FirebaseManager.swift in Sources */,
 				3E9874262B3715E900A8FAF1 /* HomeView.swift in Sources */,
+				3E411ACA2B3EFF9600018750 /* UserService.swift in Sources */,
 				3E98742C2B37165400A8FAF1 /* Game.swift in Sources */,
 				3E98742A2B37162900A8FAF1 /* GameService.swift in Sources */,
 				3E5C232B2B3CC98500B642BB /* Score.swift in Sources */,
 				3E9874182B37159E00A8FAF1 /* LochnessApp.swift in Sources */,
 				3E9874282B37160400A8FAF1 /* HomeViewModel.swift in Sources */,
+				3E411AC82B3EFC5000018750 /* User.swift in Sources */,
 				3ECB88EA2B37D2B000AEDB4D /* BetOption.swift in Sources */,
 				3EFF21072B3893D500952416 /* MatchupRow.swift in Sources */,
 				3E98742E2B37168C00A8FAF1 /* NetworkingManager.swift in Sources */,

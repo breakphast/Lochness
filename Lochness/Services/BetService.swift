@@ -24,32 +24,52 @@ class BetService {
         getBetsFromFirestore()
     }
         
-    func makeBet(from betOption: BetOption) -> Bet {
-        return Bet(type: betOption.betType.rawValue, result: BetResult.pending.rawValue, line: betOption.line ?? nil, odds: betOption.odds, points: 10, team: betOption.selectedTeam ?? nil, playerID: "01", leagueCode: "02", timestamp: Date(), gameID: betOption.game.id)
+    func makeBet(from betOption: BetOption, user: User) -> Bet {
+        return Bet(
+            type: betOption.betType.rawValue,
+            result: BetResult.pending.rawValue,
+            line: betOption.line ?? nil,
+            odds: betOption.odds,
+            points: 10, 
+            team: betOption.team,
+            userID: user.id.uuidString,
+            leagueCode: "02",
+            timestamp: Date(),
+            gameID: betOption.game.id,
+            isDeleted: nil,
+            deletedAt: nil
+        )
     }
     
     // MARK: Firebase Functions
     func add(bet: Bet) async throws {
+        if let betReference {
+            try await FirebaseManager.add(item: bet, id: bet.id.uuidString, to: betReference)
+        }
+    }
+    
+    func delete(bet: Bet) async throws {
         guard let betReference else { return }
-        
+
         let documentRef = betReference.document(bet.id.uuidString)
-        
+
         do {
-            let data = try Helpers.encoder.encode(bet)
-            if let betDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                try await documentRef.setData(betDictionary)
-                print("Bet added successfully")
-            }
+            let updateData: [String: Any] = [
+                "isDeleted": true,
+                "deletedAt": Date()
+            ]
+
+            try await documentRef.updateData(updateData)
+            print("Bet marked as deleted successfully")
         } catch {
-            print("Error encoding bet: \(error.localizedDescription)")
+            print("Error marking bet as deleted: \(error.localizedDescription)")
         }
     }
     
     private func getBetsFromFirestore() {
         if let betReference {
             self.betsListener = FirebaseManager.fetch(query: betReference, convert: parseBetFromDocument(_:)) { [weak self] bets in
-                self?.allBets = bets
-                print("Bet count:", bets.count)
+                self?.allBets = bets.filter({$0.isDeleted == nil})
             }
         }
     }
@@ -57,18 +77,21 @@ class BetService {
     private func parseBetFromDocument(_ document: QueryDocumentSnapshot) -> Bet {
         let data = document.data()
 
-        let id = data["id"] as? String ?? UUID().uuidString
+        let id = data["id"] as? String ?? ""
         let type = data["type"] as? String ?? ""
         let result = data["result"] as? String ?? "Pending"
         let line = data["line"] as? Double
         let odds = data["odds"] as? Int ?? 0
         let points = data["points"] as? Double ?? 0.0
         let stake = data["stake"] as? Double ?? 100.0
-        let team = data["team"] as? String
-        let playerID = data["playerID"] as? String ?? ""
+        let team = data["team"] as? String ?? ""
+        let userID = data["userID"] as? String ?? ""
         let leagueCode = data["leagueCode"] as? String ?? ""
         let timestamp = data["timestamp"] as? Date ?? Date()
         let gameID = data["gameID"] as? String ?? ""
+        
+        let isDeleted = data["isDeleted"] as? Bool ?? nil
+        let deletedAt = data["deletedAt"] as? Date ?? nil
 
         return Bet(
             id: UUID(uuidString: id) ?? UUID(),
@@ -79,10 +102,12 @@ class BetService {
             points: points,
             stake: stake,
             team: team,
-            playerID: playerID,
+            userID: userID,
             leagueCode: leagueCode,
             timestamp: timestamp,
-            gameID: gameID
+            gameID: gameID, 
+            isDeleted: isDeleted ?? nil,
+            deletedAt: deletedAt ?? nil
         )
     }
 

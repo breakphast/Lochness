@@ -24,4 +24,18 @@ class FirebaseManager {
         
         return listenerRegistration
     }
+    
+    static func add<T: Encodable>(item: T, id: String, to collectionReference: CollectionReference) async throws {
+        let documentRef = collectionReference.document(id)
+        
+        do {
+            let data = try Helpers.encoder.encode(item)
+            if let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                try await documentRef.setData(dictionary)
+                print("\(T.self) added successfully")
+            }
+        } catch {
+            print("Error encoding \(T.self): \(error.localizedDescription)")
+        }
+    }
 }

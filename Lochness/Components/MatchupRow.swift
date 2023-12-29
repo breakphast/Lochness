@@ -47,7 +47,7 @@ struct MatchupRow: View {
                             try await vm.addBet(from: betOption)
                         }
                     } label: {
-                        Text(betOption.betString)
+                        Text(betOption.buttonText)
                             .font(.caption2.bold())
                             .frame(width: 48, height: 44)
                             .fixedSize(horizontal: false, vertical: true)
@@ -63,7 +63,7 @@ struct MatchupRow: View {
                             try await vm.addBet(from: betOption)
                         }
                     } label: {
-                        Text(betOption.betString)
+                        Text(betOption.buttonText)
                             .font(.caption2.bold())
                             .frame(width: 48, height: 44)
                             .fixedSize(horizontal: false, vertical: true)
