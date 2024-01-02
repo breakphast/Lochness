@@ -24,7 +24,7 @@ class BetService {
         getBetsFromFirestore()
     }
         
-    func makeBet(from betOption: BetOption, user: User) -> Bet {
+    func makeBet(from betOption: BetOption, user: User, league: String?, contest: String?) -> Bet {
         return Bet(
             type: betOption.betType.rawValue,
             result: BetResult.pending.rawValue,
@@ -33,7 +33,8 @@ class BetService {
             points: 10, 
             team: betOption.team,
             userID: user.id.uuidString,
-            leagueCode: "02",
+            leagueID: league ?? nil,
+            contestID: contest ?? nil, 
             timestamp: Date(),
             gameID: betOption.game.id,
             isDeleted: nil,
@@ -86,7 +87,8 @@ class BetService {
         let stake = data["stake"] as? Double ?? 100.0
         let team = data["team"] as? String ?? ""
         let userID = data["userID"] as? String ?? ""
-        let leagueCode = data["leagueCode"] as? String ?? ""
+        let leagueID = data["leagueID"] as? String ?? nil
+        let contestID = data["contestID"] as? String ?? nil
         let timestamp = data["timestamp"] as? Date ?? Date()
         let gameID = data["gameID"] as? String ?? ""
         
@@ -103,7 +105,8 @@ class BetService {
             stake: stake,
             team: team,
             userID: userID,
-            leagueCode: leagueCode,
+            leagueID: leagueID, 
+            contestID: contestID,
             timestamp: timestamp,
             gameID: gameID, 
             isDeleted: isDeleted ?? nil,

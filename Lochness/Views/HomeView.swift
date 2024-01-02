@@ -12,39 +12,38 @@ struct HomeView: View {
     @State private var showBets = false
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            Color.white.opacity(0.7).ignoresSafeArea()
-            
-            Button {
-                showBets.toggle()
-            } label: {
-                Text("Bets")
-                    .font(.largeTitle.bold())
-                    .padding(.horizontal, 48)
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(.black)
-            .zIndex(1000)
-            
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    ForEach(vm.allGames) { game in
-                        MatchupRow(game: game, score: vm.allScores.first(where: {$0.id == game.id}))
-                            .environmentObject(vm)
-                        
-                        Divider()
-                            .foregroundStyle(.primary)
-                    }
+        NavigationStack {
+            ZStack(alignment: .bottom) {
+                Color.white.opacity(0.7).ignoresSafeArea()
+                
+                Button {
+                    showBets.toggle()
+                } label: {
+                    Text("Bets")
+                        .font(.largeTitle.bold())
+                        .padding(.horizontal, 48)
                 }
-                .padding()
+                .buttonStyle(.borderedProminent)
+                .tint(.black)
+                .zIndex(1000)
+                    
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading) {
+                        ForEach(vm.allGames) { game in
+                            MatchupRow(game: game, score: vm.allScores.first(where: {$0.id == game.id}))
+                                .environmentObject(vm)
+                            
+                            Divider()
+                                .foregroundStyle(.primary)
+                        }
+                    }
+                    .padding()
+                }
             }
+            .navigationDestination(isPresented: $showBets, destination: {
+                betsListing
+            })
         }
-        .navigationDestination(isPresented: $showBets, destination: {
-            betsListing
-        })
-//        .sheet(isPresented: $showBets) {
-//            betsListing
-//        }
     }
     
     private var betsListing: some View {
