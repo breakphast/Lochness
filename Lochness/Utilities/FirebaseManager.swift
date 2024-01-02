@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import Firebase
+import FirebaseFunctions
 
 class FirebaseManager {
     static func fetch<T>(query: Query, convert: @escaping (QueryDocumentSnapshot) -> T, listener: @escaping ([T]) -> Void) -> ListenerRegistration {

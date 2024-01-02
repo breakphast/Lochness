@@ -7,7 +7,7 @@
 		<key>Lochness.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>LochnessTests.xcscheme_^#shared#^_</key>
 		<dict>
@@ -34,6 +34,19 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3E92569D2B3E02E80088E501</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E9874132B37159E00A8FAF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

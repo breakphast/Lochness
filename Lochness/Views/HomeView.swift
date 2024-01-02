@@ -39,9 +39,12 @@ struct HomeView: View {
                 .padding()
             }
         }
-        .sheet(isPresented: $showBets) {
+        .navigationDestination(isPresented: $showBets, destination: {
             betsListing
-        }
+        })
+//        .sheet(isPresented: $showBets) {
+//            betsListing
+//        }
     }
     
     private var betsListing: some View {
@@ -72,6 +75,8 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
-        .environmentObject(Preview.dev.homeVM)
+    NavigationStack {
+        HomeView()
+            .environmentObject(Preview.dev.homeVM)
+    }
 }
