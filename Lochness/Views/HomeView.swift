@@ -18,7 +18,7 @@ struct HomeView: View {
                 Color.main500.ignoresSafeArea()
                 VStack {
                     header
-                    betsScrollView
+                    matchupsScrollView
                 }
                 
                 if betViewModel.betslipActive {
@@ -32,9 +32,6 @@ struct HomeView: View {
                 }
                 
                 tabBar
-            }
-            .overlay {
-                Color.black.opacity(showBetslip ? 0.5 : 0).ignoresSafeArea()
             }
             .sheet(isPresented: $showBetslip) {
                 Betslip()
@@ -53,31 +50,24 @@ struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                 Text("NFL Lines")
                     .foregroundStyle(.white)
-                    .font(.title2.bold())
+                    .font(.title.bold())
                     .fontDesign(.rounded)
             }
             
             HStack {
-                Text("Loch League")
-                    .frame(width: 80)
-                    .lineLimit(1)
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                Spacer()
-                Text("$97.32")
-                    .frame(width: 120)
-                    .font(.title2.bold())
-                    .fontDesign(.rounded)
-                    .kerning(1.3)
-                Spacer()
                 HStack(spacing: 4) {
-                    Image(systemName: "clock")
+                    Image(systemName: "clock.fill")
                     Text("5 Days")
                 }
-                .frame(width: 80)
-                .font(.caption)
-                .fontWeight(.semibold)
+                Spacer()
+                HStack(spacing: 4) {
+                    Text("$97.32")
+                    Image(systemName: "dollarsign.circle.fill")
+                }
             }
+            .bold()
+            .fontDesign(.rounded)
+            .kerning(1.3)
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
         }
@@ -122,7 +112,7 @@ struct HomeView: View {
                 .padding(.trailing, -24)
         }
     }
-    private var betsScrollView: some View {
+    private var matchupsScrollView: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 16) {
                 scrollViewHeader
@@ -185,75 +175,6 @@ struct HomeView: View {
         .frame(height: 60)
         .clipShape(BetslipBar(radius: 12))
         .shadow(radius: 10)
-    }
-    
-    private var betCard: some View {
-        VStack {
-            HStack {
-                Image(systemName: "xmark")
-                    .fontDesign(.rounded)
-                    .bold()
-                    .frame(maxHeight: .infinity, alignment: .top)
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Chicago Bears")
-                            .font(.caption.bold())
-                        Spacer()
-                        Text("+120")
-                            .font(.caption.bold())
-                    }
-                    Spacer()
-                    
-                    Text("Moneyline")
-                        .font(.caption2)
-                    Spacer()
-                    Text("Chicago Bears @ Green Bay Packers")
-                        .font(.caption2.bold())
-                    Spacer()
-                }
-            }
-            .foregroundStyle(.white)
-            
-            Spacer()
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Wager")
-                    Text("$80.00")
-                }
-                .frame(maxWidth: .infinity)
-                .font(.caption)
-                .frame(height: 44)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(.white)
-                        .stroke(.main800, lineWidth: 2)
-                )
-                
-                VStack(alignment: .leading) {
-                    Text("Wager")
-                    Text("$80.00")
-                }
-                .frame(maxWidth: .infinity)
-                .font(.caption)
-                .frame(height: 44)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(.white)
-                        .stroke(.main800, lineWidth: 2)
-                )
-            }
-            .frame(maxWidth: .infinity)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .frame(height: 160)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(.main700)
-                .stroke(.main800, lineWidth: 2)
-        )
-        .padding(.horizontal)
     }
 }
 

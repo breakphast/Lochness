@@ -40,6 +40,7 @@
 		3E98742C2B37165400A8FAF1 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98742B2B37165400A8FAF1 /* Game.swift */; };
 		3E98742E2B37168C00A8FAF1 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98742D2B37168C00A8FAF1 /* NetworkingManager.swift */; };
 		3EB098162B4EF257001EB346 /* Betslip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB098152B4EF257001EB346 /* Betslip.swift */; };
+		3EB0981A2B4F58FF001EB346 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB098192B4F58FF001EB346 /* Binding.swift */; };
 		3ECB88EA2B37D2B000AEDB4D /* BetOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB88E92B37D2B000AEDB4D /* BetOption.swift */; };
 		3EE9B5C12B4C4EEE00250045 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9B5C02B4C4EEE00250045 /* Color.swift */; };
 		3EE9B5C32B4C51FE00250045 /* BetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9B5C22B4C51FE00250045 /* BetButton.swift */; };
@@ -94,6 +95,7 @@
 		3E98742B2B37165400A8FAF1 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3E98742D2B37168C00A8FAF1 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		3EB098152B4EF257001EB346 /* Betslip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Betslip.swift; sourceTree = "<group>"; };
+		3EB098192B4F58FF001EB346 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		3ECB88E92B37D2B000AEDB4D /* BetOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetOption.swift; sourceTree = "<group>"; };
 		3EE9B5C02B4C4EEE00250045 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3EE9B5C22B4C51FE00250045 /* BetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetButton.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				3E7F09372B47097900704D26 /* TextField.swift */,
 				3EE9B5C02B4C4EEE00250045 /* Color.swift */,
 				3EE9B5C42B4C71F100250045 /* String.swift */,
+				3EB098192B4F58FF001EB346 /* Binding.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				3E98742A2B37162900A8FAF1 /* GameService.swift in Sources */,
 				3E5C232B2B3CC98500B642BB /* Score.swift in Sources */,
 				3E9874182B37159E00A8FAF1 /* LochnessApp.swift in Sources */,
+				3EB0981A2B4F58FF001EB346 /* Binding.swift in Sources */,
 				3E9874282B37160400A8FAF1 /* HomeViewModel.swift in Sources */,
 				3E14A4612B44662400E344A1 /* ContestService.swift in Sources */,
 				3EFF2FAD2B46007000D3CE14 /* CreateLeagueView.swift in Sources */,

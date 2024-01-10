@@ -113,5 +113,19 @@ class BetService {
             deletedAt: deletedAt ?? nil
         )
     }
+    
+    static func calculatePayout(odds: Int, wager: Double) -> (payout: Double, profit: Double) {
+        var profit: Double = 0.0
+        var payout: Double = 0.0
 
+        if odds > 0 {
+            profit = (Double(odds) / 100.0) * wager
+        } else {
+            profit = wager / (Double(abs(odds)) / 100.0)
+        }
+
+        payout = wager + profit
+
+        return (payout, profit)
+    }
 }

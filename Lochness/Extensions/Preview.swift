@@ -67,5 +67,6 @@ class DeveloperPreview {
         self.game = Game(gameElement: gameElement)
         let options = GameService().generateBetOptions(game: self.game!)
         self.bet = BetService().makeBet(from: options[0], user: User(username: "JONATHAN"), league: nil, contest: nil)
+        betViewModel.selectedBetOptions = [options[4]]
     }
 }

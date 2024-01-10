@@ -10,6 +10,7 @@ import SwiftUI
 struct Betslip: View {
     @EnvironmentObject private var betViewModel: BetViewModel
     @EnvironmentObject private var homeViewModel: HomeViewModel
+    @State private var wager = ""
 
     var body: some View {
         ZStack {
@@ -26,6 +27,8 @@ struct Betslip: View {
                         .padding(.top, 24)
                     }
                     .scrollIndicators(.hidden)
+                    
+                    placeBetContainer(size)
                 }
                 .frame(width: size.width)
             }
@@ -33,22 +36,52 @@ struct Betslip: View {
     }
     
     @ViewBuilder
+    func placeBetContainer(_ size: CGSize) -> some View {
+        ZStack {
+            Color.white.ignoresSafeArea()
+                .shadow(radius: 2)
+            Button {
+                
+            } label: {
+                Text("PLACE BETS $240.00")
+                    .foregroundStyle(.white)
+                    .font(.headline.bold())
+                    .kerning(1.0)
+            }
+            .frame(maxWidth: size.width - 48)
+            .frame(height: 48)
+            .background(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(.main500)
+            )
+        }
+        .frame(height: 80)
+        .overlay {
+            Rectangle()
+                .fill(.main800.opacity(0.75))
+                .frame(height: 2)
+                .frame(maxHeight: .infinity, alignment: .top)
+        }
+    }
+    
+    @ViewBuilder
     func betslipHeader(_ size: CGSize) -> some View {
-        HStack {
+        HStack(spacing: 8) {
             Text("Betslip")
-                .font(.callout.bold())
+                .font(.headline)
             Circle()
-                .stroke(.white, lineWidth: 4)
-                .fill(.main500)
+                .fill(.white)
                 .frame(width: 24)
                 .overlay {
                     Text("\(betViewModel.selectedBetOptions.count)")
                         .font(.caption2)
                         .fontWeight(.heavy)
+                        .foregroundStyle(.main700)
                 }
         }
         .foregroundStyle(.white)
         .padding()
+        .padding(.leading, 4)
         .frame(width: size.width, alignment: .leading)
         .background(
             Color.main500
@@ -56,6 +89,7 @@ struct Betslip: View {
         )
         .overlay {
             Rectangle()
+                .fill(.main800.opacity(0.75))
                 .frame(height: 2)
                 .frame(maxHeight: .infinity, alignment: .bottom)
         }
@@ -66,29 +100,43 @@ struct Betslip: View {
         VStack(spacing: 16) {
             HStack(alignment: .top) {
                 Image(systemName: "xmark")
-                    .fontDesign(.rounded)
-                    .bold()
-                VStack(alignment: .leading, spacing: 16) {
-                    HStack(alignment: .center) {
+                    .font(.title2.bold())
+                    .padding(.top, 2)
+                    .overlay {
+                        Color.clear
+                    }
+                    .onTapGesture {
+                        withAnimation(.snappy) {
+                            betViewModel.selectedBetOptions.removeAll(where: { $0.id.uuidString == betOption.id.uuidString })
+                        }
+                    }
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
                         Text(betOption.team)
-                            .font(.caption.bold())
+                            .fontWeight(.heavy)
                         Spacer()
                         Text(betOption.formattedOdds)
-                            .font(.caption.bold())
+                            .fontWeight(.heavy)
                     }
-                    Text(betOption.betType.rawValue)
-                        .font(.caption2)
+                    Text(betOption.betType.rawValue + (betOption.line != nil ? " \(String(betOption.line ?? 0.0))" : ""))
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .opacity(0.9)
                     Text(betOption.matchupTeamsDescription)
-                        .font(.caption2.bold())
+                        .font(.caption)
+                        .opacity(0.9)
                 }
+                .bold()
             }
             .foregroundStyle(.white)
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text("Wager")
-                    Text("$80.00")
+                        .font(.caption)
+                    TextField("$0.00", text: self.$wager.dollarBinding)
+                        .font(.subheadline)
+                        .keyboardType(.numberPad)
                 }
-                .font(.caption)
                 .padding(8)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
@@ -97,11 +145,12 @@ struct Betslip: View {
                         .stroke(.main800, lineWidth: 2)
                 )
                 
-                VStack(alignment: .leading) {
-                    Text("Wager")
-                    Text("$80.00")
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("To Win")
+                        .font(.caption)
+                    Text("$\(BetService.calculatePayout(odds: betOption.odds, wager: Double(wager) ?? 0).profit.twoDecimalString)")
+                        .font(.subheadline)
                 }
-                .font(.caption)
                 .padding(8)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
@@ -123,4 +172,6 @@ struct Betslip: View {
 
 #Preview {
     Betslip()
+        .environmentObject(Preview.dev.homeViewModel)
+        .environmentObject(Preview.dev.betViewModel)
 }
