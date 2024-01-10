@@ -16,16 +16,16 @@ class Bet: Identifiable, Codable {
     var points: Double
     var stake = 100.0
     let team: String
+    let matchupTeamsDescription: String
     let userID: String
     let leagueID: String?
-    let contestID: String?
     let timestamp: Date
     let gameID: String
     
     var isDeleted: Bool? = nil
     var deletedAt: Date? = nil
     
-    init(id: UUID = UUID(), type: String, result: String, line: Double?, odds: Int, points: Double, stake: Double = 100.0, team: String, userID: String, leagueID: String?, contestID: String?, timestamp: Date, gameID: String, isDeleted: Bool?, deletedAt: Date?) {
+    init(id: UUID = UUID(), type: String, result: String, line: Double?, odds: Int, points: Double, stake: Double = 100.0, team: String, matchupTeamsDescription: String, userID: String, leagueID: String?, timestamp: Date, gameID: String, isDeleted: Bool?, deletedAt: Date?) {
         self.id = id
         self.type = type
         self.result = result
@@ -34,9 +34,9 @@ class Bet: Identifiable, Codable {
         self.points = points
         self.stake = stake
         self.team = team
+        self.matchupTeamsDescription = matchupTeamsDescription
         self.userID = userID
         self.leagueID = leagueID ?? nil
-        self.contestID = contestID ?? nil
         self.timestamp = timestamp
         self.gameID = gameID
         self.isDeleted = isDeleted

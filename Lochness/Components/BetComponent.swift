@@ -53,3 +53,39 @@ struct BetComponent: View {
         }
     }
 }
+
+extension Bet {
+    var formattedOdds: String {
+        odds > 0 ? "+\(odds)" : "\(odds)"
+    }
+    
+    var formattedLine: String? {
+        if let line = line {
+            return line > 0 ? "+\(line)" : "\(line)"
+        } else {
+            return nil
+        }
+    }
+}
+
+extension BetOption {
+    var formattedOdds: String {
+        odds > 0 ? "+\(odds)" : "\(odds)"
+    }
+    
+    var formattedLine: String? {
+        if let line = line {
+            switch betType {
+            case .spread:
+                return line > 0 ? "+\(line)" : "\(line)"
+            case .over:
+                return "O \(line)"
+            case .under:
+                return "U \(line)"
+            default: return nil
+            }
+        } else {
+            return nil
+        }
+    }
+}

@@ -132,7 +132,7 @@ class GameService {
             })
     }
         
-    private func generateBetOptions(game: Game) -> [BetOption] {
+    func generateBetOptions(game: Game) -> [BetOption] {
         let options = BetType.allCases.flatMap { type -> [BetOption] in
             switch type {
             case .spread:

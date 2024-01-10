@@ -15,12 +15,14 @@ class BetOption: Identifiable {
     var line: Double? = nil
     var buttonText: String
     var team: String
+    var matchupTeamsDescription: String
     
     init(game: Game, betType: BetType, odds: Int, line: Double? = nil, team: String) {
         self.game = game
-        self.betType = betType
+        self.betType = betType 
         self.odds = odds
         self.team = team
+        self.matchupTeamsDescription = "\(game.awayTeam) @ \(game.homeTeam)"
         
         let formattedOdds = odds > 0 ? "+\(odds)" : "\(odds)"
         

@@ -11,6 +11,7 @@ import Firebase
 @main
 struct LochnessApp: App {
     @StateObject private var homeViewModel = HomeViewModel()
+    @StateObject private var betViewModel = BetViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -20,6 +21,7 @@ struct LochnessApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(homeViewModel)
+                .environmentObject(betViewModel)
         }
     }
 }

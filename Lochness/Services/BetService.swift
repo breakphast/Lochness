@@ -32,9 +32,9 @@ class BetService {
             odds: betOption.odds,
             points: 10, 
             team: betOption.team,
+            matchupTeamsDescription: betOption.matchupTeamsDescription, 
             userID: user.id.uuidString,
             leagueID: league ?? nil,
-            contestID: contest ?? nil, 
             timestamp: Date(),
             gameID: betOption.game.id,
             isDeleted: nil,
@@ -88,9 +88,9 @@ class BetService {
         let team = data["team"] as? String ?? ""
         let userID = data["userID"] as? String ?? ""
         let leagueID = data["leagueID"] as? String ?? nil
-        let contestID = data["contestID"] as? String ?? nil
         let timestamp = data["timestamp"] as? Date ?? Date()
         let gameID = data["gameID"] as? String ?? ""
+        let matchupTeamsDescription = data["matchupTeamsDescription"] as? String ?? ""
         
         let isDeleted = data["isDeleted"] as? Bool ?? nil
         let deletedAt = data["deletedAt"] as? Date ?? nil
@@ -104,9 +104,9 @@ class BetService {
             points: points,
             stake: stake,
             team: team,
+            matchupTeamsDescription: matchupTeamsDescription,
             userID: userID,
             leagueID: leagueID, 
-            contestID: contestID,
             timestamp: timestamp,
             gameID: gameID, 
             isDeleted: isDeleted ?? nil,

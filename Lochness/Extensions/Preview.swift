@@ -17,7 +17,9 @@ extension Preview {
 class DeveloperPreview {
     static let instance = DeveloperPreview()
     let game: Game?
-    let homeVM = HomeViewModel()
+    let bet: Bet?
+    let homeViewModel = HomeViewModel()
+    let betViewModel = BetViewModel()
     
     private init() {
         let gameElement = GameElement(
@@ -63,5 +65,7 @@ class DeveloperPreview {
             ]
         )
         self.game = Game(gameElement: gameElement)
+        let options = GameService().generateBetOptions(game: self.game!)
+        self.bet = BetService().makeBet(from: options[0], user: User(username: "JONATHAN"), league: nil, contest: nil)
     }
 }

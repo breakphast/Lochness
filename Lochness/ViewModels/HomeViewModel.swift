@@ -12,11 +12,11 @@ import Combine
 class HomeViewModel: ObservableObject {
     @Published var allGames = [Game]()
     @Published var allBetOptions = [BetOption]()
-    @Published var allScores = [Score]()
-    @Published var allBets = [Bet]()
     @Published var allUsers = [User]()
     @Published var allLeagues = [League]()
     @Published var allContests = [Contest]()
+    
+    @Published var isLoading = true
     
     var activeUser: User? = nil
     var activeLeague: League? = nil
@@ -34,6 +34,11 @@ class HomeViewModel: ObservableObject {
     
     init() {
         addSubscribers()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            withAnimation(.bouncy) {
+                self.isLoading = false
+            }
+        }
     }
     
     func addSubscribers() {
@@ -42,20 +47,6 @@ class HomeViewModel: ObservableObject {
             .sink { [weak self] returnedGames, returnedBetOptions in
                 self?.allGames = returnedGames
                 self?.allBetOptions = returnedBetOptions
-            }
-            .store(in: &cancellables)
-                
-        betService.$allBets
-            .sink { [weak self] returnedBets in
-                self?.allBets = returnedBets
-            }
-            .store(in: &cancellables)
-        
-        scoreService.$allScores
-            .combineLatest(betService.$allBets)
-            .sink { [weak self] returnedScores, returnedBets in
-                self?.allScores = returnedScores
-                self?.allBets = returnedBets
             }
             .store(in: &cancellables)
         
@@ -96,13 +87,6 @@ class HomeViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
-    }
-    
-    func addBet(from betOption: BetOption) async throws {
-        if let activeUser {
-            let bet = betService.makeBet(from: betOption, user: activeUser, league: activeLeague?.id.uuidString ?? nil, contest: activeContest?.id.uuidString ?? nil)
-            try await betService.add(bet: bet)
-        }
     }
     
     func addLeague(_ league: League) async throws {

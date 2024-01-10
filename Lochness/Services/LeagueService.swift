@@ -24,11 +24,15 @@ class LeagueService {
         getLeaguesFromFirestore()
     }
     
-    func makeLeague(name: String, isPrivate: Bool, userID: String) -> League {
+    func makeLeague(name: String, userID: String, size: Int, sport: String, wagerMode: String, playoffMode: String, playoffSize: Int) -> League {
         return League(
             name: name,
-            isPrivate: isPrivate,
-            users: [userID]
+            users: [userID],
+            size: size,
+            sport: sport,
+            wagerMode: wagerMode,
+            playoffMode: playoffMode,
+            playoffSize: playoffSize
         )
     }
     
@@ -51,14 +55,22 @@ class LeagueService {
         
         let id = data["id"] as? String ?? ""
         let name = data["name"] as? String ?? ""
-        let isPrivate = data["isPrivate"] as? Bool ?? false
         let usersArray = data["users"] as? [String] ?? []
+        let size = data["size"] as? Int ?? LeagueSize.four.rawValue
+        let sport = data["sport"] as? String ?? Sport.nfl.rawValue
+        let wagerMode = data["wagerMode"] as? String ?? WagerMode.fixed.rawValue
+        let playoffMode = data["playoffMode"] as? String ?? PlayoffMode.elimination.rawValue
+        let playoffSize = data["playoffSize"] as? Int ?? PlayoffSize.six.rawValue
         
         return League(
             id: UUID(uuidString: id) ?? UUID(),
             name: name,
-            isPrivate: isPrivate,
-            users: usersArray
+            users: usersArray,
+            size: size,
+            sport: sport,
+            wagerMode: wagerMode,
+            playoffMode: playoffMode,
+            playoffSize: playoffSize
         )
     }
 }
