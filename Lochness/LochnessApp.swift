@@ -19,7 +19,7 @@ struct LochnessApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            Home()
                 .environmentObject(homeViewModel)
                 .environmentObject(betViewModel)
         }

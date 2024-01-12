@@ -27,6 +27,7 @@ class BetViewModel: ObservableObject {
     
     func addSubscribers() {
         betService.$allBets
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] returnedBets in
                 self?.allBets = returnedBets
             }
@@ -52,7 +53,7 @@ class BetViewModel: ObservableObject {
     }
     
     func addBet(from betOption: BetOption, for user: User, to league: League) async throws {
-        let bet = betService.makeBet(from: betOption, user: user, league: league.id.uuidString, contest: league.id.uuidString)
+        let bet = betService.makeBet(from: betOption, user: user, league: league.id.uuidString)
         try await betService.add(bet: bet)
     }
     
@@ -63,4 +64,17 @@ class BetViewModel: ObservableObject {
             self.selectedBetOptions.append(betOption)
         }
     }
+    
+    func placeBet(_ betOption: BetOption, user: User, wager: Double) async throws {
+        let bet = betService.makeBet(from: betOption, user: user, league: nil, wager: wager)
+        try await betService.add(bet: bet)
+
+        // Dispatching back to the main thread
+        await MainActor.run {
+            withAnimation {
+                selectedBetOptions.removeAll(where: { $0.id.uuidString == betOption.id.uuidString })
+            }
+        }
+    }
+
 }

@@ -13,7 +13,9 @@ class Bet: Identifiable, Codable {
     var result: String
     let line: Double?
     let odds: Int
-    var points: Double
+    var points: Double?
+    let wager: Double?
+    let payout: Double?
     var stake = 100.0
     let team: String
     let matchupTeamsDescription: String
@@ -25,13 +27,15 @@ class Bet: Identifiable, Codable {
     var isDeleted: Bool? = nil
     var deletedAt: Date? = nil
     
-    init(id: UUID = UUID(), type: String, result: String, line: Double?, odds: Int, points: Double, stake: Double = 100.0, team: String, matchupTeamsDescription: String, userID: String, leagueID: String?, timestamp: Date, gameID: String, isDeleted: Bool?, deletedAt: Date?) {
+    init(id: UUID = UUID(), type: String, result: String, line: Double?, odds: Int, points: Double?, wager: Double?, payout: Double?, stake: Double = 100.0, team: String, matchupTeamsDescription: String, userID: String, leagueID: String?, timestamp: Date, gameID: String, isDeleted: Bool?, deletedAt: Date?) {
         self.id = id
         self.type = type
         self.result = result
         self.line = line
         self.odds = odds
         self.points = points
+        self.wager = wager
+        self.payout = payout
         self.stake = stake
         self.team = team
         self.matchupTeamsDescription = matchupTeamsDescription

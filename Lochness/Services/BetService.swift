@@ -24,13 +24,15 @@ class BetService {
         getBetsFromFirestore()
     }
         
-    func makeBet(from betOption: BetOption, user: User, league: String?, contest: String?) -> Bet {
+    func makeBet(from betOption: BetOption, user: User, league: String?, wager: Double? = nil) -> Bet {
         return Bet(
             type: betOption.betType.rawValue,
             result: BetResult.pending.rawValue,
             line: betOption.line ?? nil,
             odds: betOption.odds,
             points: 10, 
+            wager: wager ?? nil,
+            payout: Self.calculatePayout(odds: betOption.odds, wager: wager ?? 0).payout,
             team: betOption.team,
             matchupTeamsDescription: betOption.matchupTeamsDescription, 
             userID: user.id.uuidString,
@@ -40,6 +42,11 @@ class BetService {
             isDeleted: nil,
             deletedAt: nil
         )
+    }
+    
+    func placeBet(_ betOption: BetOption, user: User, wager: Double) async throws {
+        let bet = makeBet(from: betOption, user: user, league: nil, wager: wager)
+        try await add(bet: bet)
     }
     
     // MARK: Firebase Functions
@@ -84,6 +91,8 @@ class BetService {
         let line = data["line"] as? Double
         let odds = data["odds"] as? Int ?? 0
         let points = data["points"] as? Double ?? 0.0
+        let wager = data["wager"] as? Double ?? 0.0
+        let payout = data["payout"] as? Double ?? 0.0
         let stake = data["stake"] as? Double ?? 100.0
         let team = data["team"] as? String ?? ""
         let userID = data["userID"] as? String ?? ""
@@ -102,6 +111,8 @@ class BetService {
             line: line,
             odds: odds,
             points: points,
+            wager: wager,
+            payout: payout,
             stake: stake,
             team: team,
             matchupTeamsDescription: matchupTeamsDescription,

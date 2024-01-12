@@ -7,39 +7,38 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct Board: View {
     @EnvironmentObject private var homeViewModel: HomeViewModel
     @EnvironmentObject var betViewModel: BetViewModel
     @State private var showBetslip = false
+    @State private var showMyBets = false
     
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottom) {
-                Color.main500.ignoresSafeArea()
-                VStack {
-                    header
-                    matchupsScrollView
-                }
-                
-                if betViewModel.betslipActive {
-                    betslipBar
-                        .padding(.bottom, 60)
-                        .onTapGesture {
-                            withAnimation(.bouncy) {
-                                showBetslip.toggle()
-                            }
-                        }
-                }
-                
-                tabBar
+        ZStack(alignment: .bottom) {
+            Color.main500.ignoresSafeArea()
+            VStack {
+                header
+                matchupsScrollView
             }
-            .sheet(isPresented: $showBetslip) {
-                Betslip()
-                    .environmentObject(betViewModel)
+            if betViewModel.betslipActive {
+                betslipBar
+                    .onTapGesture {
+                        withAnimation(.bouncy) {
+                            showBetslip.toggle()
+                        }
+                    }
             }
         }
+        .sheet(isPresented: $showBetslip) {
+            Betslip()
+                .environmentObject(betViewModel)
+        }
+        .fullScreenCover(isPresented: $showMyBets) {
+            MyBetsView()
+                .environmentObject(betViewModel)
+        }
     }
-        
+    
     private var header: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
@@ -121,6 +120,12 @@ struct HomeView: View {
                     MatchupRow(game: game, score: betViewModel.allScores.first(where: {$0.id == game.id}))
                         .environmentObject(homeViewModel)
                         .environmentObject(betViewModel)
+                    if game.id != homeViewModel.allGames.last?.id {
+                        RoundedRectangle(cornerRadius: 0.5)
+                            .frame(height: 1)
+                            .foregroundStyle(.main200)
+                            .padding(.leading, -24)
+                    }
                 }
             }
             .padding()
@@ -128,33 +133,6 @@ struct HomeView: View {
                 Color.white
             )
         }
-    }
-    private var tabBar: some View {
-        ZStack() {
-            Color.white.ignoresSafeArea()
-                .shadow(radius: 8)
-            HStack {
-                TabBarButton(image: Image(.home), title: "Home")
-                Spacer()
-                TabBarButton(image: Image(.myBets), title: "My Bets")
-                Spacer()
-                TabBarButton(image: Image(.scores), title: "Scores")
-                Spacer()
-                TabBarButton(image: Image(.league), title: "League")
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.horizontal, 24)
-        }
-        .frame(height: 60)
-    }
-    private var placeBetContainer: some View {
-        ZStack {
-            Color.white.ignoresSafeArea()
-                .shadow(radius: 8)
-            Text("Place Bets $240")
-                .frame(maxWidth: .infinity)
-        }
-        .frame(height: 60)
     }
     private var betslipBar: some View {
         ZStack(alignment: .top) {
@@ -174,13 +152,19 @@ struct HomeView: View {
         }
         .frame(height: 60)
         .clipShape(BetslipBar(radius: 12))
-        .shadow(radius: 10)
+        .overlay(alignment: .bottom) {
+            Rectangle()
+                .fill(.main800.opacity(0.7))
+                .frame(height: 1)
+                .shadow(radius: 4)
+        }
+//        .offset(y: -49)
     }
 }
 
 #Preview {
     NavigationStack {
-        HomeView()
+        Board()
             .environmentObject(Preview.dev.homeViewModel)
             .environmentObject(Preview.dev.betViewModel)
     }

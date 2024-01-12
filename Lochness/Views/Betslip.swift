@@ -11,6 +11,8 @@ struct Betslip: View {
     @EnvironmentObject private var betViewModel: BetViewModel
     @EnvironmentObject private var homeViewModel: HomeViewModel
     @State private var wager = ""
+    @State private var betOptionsWagered = [String]()
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         ZStack {
@@ -41,18 +43,30 @@ struct Betslip: View {
             Color.white.ignoresSafeArea()
                 .shadow(radius: 2)
             Button {
-                
+                if !wager.isEmpty {
+                    if let user = homeViewModel.activeUser {
+                        Task {
+                            for betOption in betViewModel.selectedBetOptions {
+                                try await betViewModel.placeBet(betOption, user: user, wager: 100.0)
+                                if betViewModel.selectedBetOptions.isEmpty {
+                                    dismiss()
+                                }
+                            }
+                        }
+                    }
+                }
             } label: {
-                Text("PLACE BETS $240.00")
+                Text("PLACE BET\(betViewModel.selectedBetOptions.count == 1 ? "" : "S") $\(wager.isEmpty ? "0.00" : wager)")
                     .foregroundStyle(.white)
                     .font(.headline.bold())
                     .kerning(1.0)
             }
-            .frame(maxWidth: size.width - 48)
+            .frame(width: size.width)
             .frame(height: 48)
             .background(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(.main500)
+                    .fill(.main700)
+                    .padding(.horizontal, 24)
             )
         }
         .frame(height: 80)
@@ -68,23 +82,22 @@ struct Betslip: View {
     func betslipHeader(_ size: CGSize) -> some View {
         HStack(spacing: 8) {
             Text("Betslip")
-                .font(.headline)
             Circle()
                 .fill(.white)
                 .frame(width: 24)
                 .overlay {
                     Text("\(betViewModel.selectedBetOptions.count)")
                         .font(.caption2)
-                        .fontWeight(.heavy)
                         .foregroundStyle(.main700)
                 }
         }
         .foregroundStyle(.white)
+        .fontWeight(.heavy)
         .padding()
         .padding(.leading, 4)
         .frame(width: size.width, alignment: .leading)
         .background(
-            Color.main500
+            Color.main700
                 .shadow(.drop(radius: 8))
         )
         .overlay {
@@ -136,6 +149,7 @@ struct Betslip: View {
                     TextField("$0.00", text: self.$wager.dollarBinding)
                         .font(.subheadline)
                         .keyboardType(.numberPad)
+                        .textContentType(.postalCode)
                 }
                 .padding(8)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -150,6 +164,7 @@ struct Betslip: View {
                         .font(.caption)
                     Text("$\(BetService.calculatePayout(odds: betOption.odds, wager: Double(wager) ?? 0).profit.twoDecimalString)")
                         .font(.subheadline)
+                        .foregroundStyle(wager.isEmpty ? .gray.opacity(0.5) : .main900)
                 }
                 .padding(8)
                 .frame(maxWidth: .infinity, alignment: .leading)

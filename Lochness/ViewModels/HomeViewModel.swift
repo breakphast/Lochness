@@ -55,7 +55,7 @@ class HomeViewModel: ObservableObject {
                 self?.allUsers = returnedUsers
                 if let user = returnedUsers.first {
                     self?.activeUser = user
-                    print("Active User:", user.username)
+                    print("Active User:", user.username + " \(user.id.uuidString)")
                 }
             }
             .store(in: &cancellables)

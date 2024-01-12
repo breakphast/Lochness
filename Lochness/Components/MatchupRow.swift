@@ -25,11 +25,6 @@ struct MatchupRow: View {
                 .font(.caption2)
                 .foregroundStyle(.main800)
                 .padding(.trailing, 4)
-            
-            RoundedRectangle(cornerRadius: 0.5)
-                .frame(height: 1)
-                .foregroundStyle(.main200)
-                .padding(.leading, -24)
         }
     }
     
