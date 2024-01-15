@@ -12,6 +12,7 @@ import Firebase
 struct LochnessApp: App {
     @StateObject private var homeViewModel = HomeViewModel()
     @StateObject private var betViewModel = BetViewModel()
+    @StateObject private var createLeagueViewModel = CreateLeagueViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -19,9 +20,10 @@ struct LochnessApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Home()
+            CreateLeagueMainView()
                 .environmentObject(homeViewModel)
                 .environmentObject(betViewModel)
+                .environmentObject(createLeagueViewModel)
         }
     }
 }

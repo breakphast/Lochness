@@ -50,11 +50,18 @@
 		3EE9B5CB2B4C881800250045 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9B5CA2B4C881800250045 /* TabBarButton.swift */; };
 		3EF07A502B51BC44008F74E3 /* MyBetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A4F2B51BC44008F74E3 /* MyBetsView.swift */; };
 		3EF07A522B51DE29008F74E3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A512B51DE29008F74E3 /* Home.swift */; };
+		3EF07A572B55865B008F74E3 /* CreateLeagueMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A562B55865B008F74E3 /* CreateLeagueMainView.swift */; };
+		3EF07A592B5586A1008F74E3 /* CreateLeagueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A582B5586A1008F74E3 /* CreateLeagueViewModel.swift */; };
+		3EF07A5B2B55A475008F74E3 /* CreateLeagueModesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A5A2B55A475008F74E3 /* CreateLeagueModesView.swift */; };
+		3EF07A5D2B55B652008F74E3 /* CreateLeagueHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A5C2B55B652008F74E3 /* CreateLeagueHeader.swift */; };
+		3EF07A5F2B55B6C9008F74E3 /* CreateLeagueNextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A5E2B55B6C9008F74E3 /* CreateLeagueNextButton.swift */; };
+		3EF07A612B55B894008F74E3 /* DropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A602B55B894008F74E3 /* DropdownPicker.swift */; };
+		3EF07A632B55B8A5008F74E3 /* LeagueSizeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A622B55B8A5008F74E3 /* LeagueSizeCircle.swift */; };
+		3EF07A652B55BEE5008F74E3 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A642B55BEE5008F74E3 /* UIApplication.swift */; };
 		3EFF20FF2B388E0900952416 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF20FE2B388E0900952416 /* Bet.swift */; };
 		3EFF21022B388EEE00952416 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF21012B388EEE00952416 /* Double.swift */; };
 		3EFF21042B388F2400952416 /* BetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF21032B388F2400952416 /* BetService.swift */; };
 		3EFF21072B3893D500952416 /* MatchupRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF21062B3893D500952416 /* MatchupRow.swift */; };
-		3EFF2FAD2B46007000D3CE14 /* CreateLeagueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF2FAC2B46007000D3CE14 /* CreateLeagueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,11 +114,18 @@
 		3EE9B5CA2B4C881800250045 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		3EF07A4F2B51BC44008F74E3 /* MyBetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBetsView.swift; sourceTree = "<group>"; };
 		3EF07A512B51DE29008F74E3 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		3EF07A562B55865B008F74E3 /* CreateLeagueMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeagueMainView.swift; sourceTree = "<group>"; };
+		3EF07A582B5586A1008F74E3 /* CreateLeagueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeagueViewModel.swift; sourceTree = "<group>"; };
+		3EF07A5A2B55A475008F74E3 /* CreateLeagueModesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeagueModesView.swift; sourceTree = "<group>"; };
+		3EF07A5C2B55B652008F74E3 /* CreateLeagueHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeagueHeader.swift; sourceTree = "<group>"; };
+		3EF07A5E2B55B6C9008F74E3 /* CreateLeagueNextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeagueNextButton.swift; sourceTree = "<group>"; };
+		3EF07A602B55B894008F74E3 /* DropdownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownPicker.swift; sourceTree = "<group>"; };
+		3EF07A622B55B8A5008F74E3 /* LeagueSizeCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueSizeCircle.swift; sourceTree = "<group>"; };
+		3EF07A642B55BEE5008F74E3 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		3EFF20FE2B388E0900952416 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
 		3EFF21012B388EEE00952416 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		3EFF21032B388F2400952416 /* BetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetService.swift; sourceTree = "<group>"; };
 		3EFF21062B3893D500952416 /* MatchupRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchupRow.swift; sourceTree = "<group>"; };
-		3EFF2FAC2B46007000D3CE14 /* CreateLeagueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeagueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,11 +230,11 @@
 		3E9874312B3781F500A8FAF1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3EF07A552B55863F008F74E3 /* CreateLeagueViews */,
 				3EF07A512B51DE29008F74E3 /* Home.swift */,
 				3E9874252B3715E900A8FAF1 /* Board.swift */,
 				3EB098152B4EF257001EB346 /* Betslip.swift */,
 				3EF07A4F2B51BC44008F74E3 /* MyBetsView.swift */,
-				3EFF2FAC2B46007000D3CE14 /* CreateLeagueView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +244,7 @@
 			children = (
 				3E9874272B37160400A8FAF1 /* HomeViewModel.swift */,
 				3EE9B5C62B4C75BD00250045 /* BetViewModel.swift */,
+				3EF07A582B5586A1008F74E3 /* CreateLeagueViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -259,6 +274,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		3EF07A552B55863F008F74E3 /* CreateLeagueViews */ = {
+			isa = PBXGroup;
+			children = (
+				3EF07A562B55865B008F74E3 /* CreateLeagueMainView.swift */,
+				3EF07A5A2B55A475008F74E3 /* CreateLeagueModesView.swift */,
+			);
+			path = CreateLeagueViews;
+			sourceTree = "<group>";
+		};
 		3EFF21002B388EE300952416 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +292,7 @@
 				3EE9B5C02B4C4EEE00250045 /* Color.swift */,
 				3EE9B5C42B4C71F100250045 /* String.swift */,
 				3EB098192B4F58FF001EB346 /* Binding.swift */,
+				3EF07A642B55BEE5008F74E3 /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +305,10 @@
 				3EE9B5C22B4C51FE00250045 /* BetButton.swift */,
 				3EE9B5C82B4C84EE00250045 /* BetslipBar.swift */,
 				3EE9B5CA2B4C881800250045 /* TabBarButton.swift */,
+				3EF07A5C2B55B652008F74E3 /* CreateLeagueHeader.swift */,
+				3EF07A5E2B55B6C9008F74E3 /* CreateLeagueNextButton.swift */,
+				3EF07A602B55B894008F74E3 /* DropdownPicker.swift */,
+				3EF07A622B55B8A5008F74E3 /* LeagueSizeCircle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -416,14 +445,17 @@
 				3EE9B5CB2B4C881800250045 /* TabBarButton.swift in Sources */,
 				3E98742C2B37165400A8FAF1 /* Game.swift in Sources */,
 				3E98742A2B37162900A8FAF1 /* GameService.swift in Sources */,
+				3EF07A632B55B8A5008F74E3 /* LeagueSizeCircle.swift in Sources */,
 				3E5C232B2B3CC98500B642BB /* Score.swift in Sources */,
+				3EF07A612B55B894008F74E3 /* DropdownPicker.swift in Sources */,
+				3EF07A572B55865B008F74E3 /* CreateLeagueMainView.swift in Sources */,
 				3E9874182B37159E00A8FAF1 /* LochnessApp.swift in Sources */,
 				3EB0981A2B4F58FF001EB346 /* Binding.swift in Sources */,
 				3E9874282B37160400A8FAF1 /* HomeViewModel.swift in Sources */,
 				3E14A4612B44662400E344A1 /* ContestService.swift in Sources */,
-				3EFF2FAD2B46007000D3CE14 /* CreateLeagueView.swift in Sources */,
 				3E411AC82B3EFC5000018750 /* User.swift in Sources */,
 				3ECB88EA2B37D2B000AEDB4D /* BetOption.swift in Sources */,
+				3EF07A5B2B55A475008F74E3 /* CreateLeagueModesView.swift in Sources */,
 				3E14A45F2B44616500E344A1 /* Contest.swift in Sources */,
 				3EF07A502B51BC44008F74E3 /* MyBetsView.swift in Sources */,
 				3EFF21072B3893D500952416 /* MatchupRow.swift in Sources */,
@@ -432,8 +464,11 @@
 				3EE9B5C52B4C71F100250045 /* String.swift in Sources */,
 				3EFF21022B388EEE00952416 /* Double.swift in Sources */,
 				3E7F09382B47097900704D26 /* TextField.swift in Sources */,
+				3EF07A5D2B55B652008F74E3 /* CreateLeagueHeader.swift in Sources */,
 				3E9256AD2B3E52520088E501 /* Helpers.swift in Sources */,
+				3EF07A592B5586A1008F74E3 /* CreateLeagueViewModel.swift in Sources */,
 				3EFF20FF2B388E0900952416 /* Bet.swift in Sources */,
+				3EF07A5F2B55B6C9008F74E3 /* CreateLeagueNextButton.swift in Sources */,
 				3EF07A522B51DE29008F74E3 /* Home.swift in Sources */,
 				3E51AD082B3C7E170059E23C /* Preview.swift in Sources */,
 				3EE9B5C32B4C51FE00250045 /* BetButton.swift in Sources */,
@@ -441,6 +476,7 @@
 				3E5C23292B3CC4B200B642BB /* ScoreService.swift in Sources */,
 				3EE9B5C72B4C75BD00250045 /* BetViewModel.swift in Sources */,
 				3E14A45B2B44568E00E344A1 /* League.swift in Sources */,
+				3EF07A652B55BEE5008F74E3 /* UIApplication.swift in Sources */,
 				3EFF21042B388F2400952416 /* BetService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

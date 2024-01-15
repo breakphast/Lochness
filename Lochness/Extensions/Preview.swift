@@ -20,6 +20,7 @@ class DeveloperPreview {
     let bet: Bet?
     let homeViewModel = HomeViewModel()
     let betViewModel = BetViewModel()
+    let createLeagueViewModel = CreateLeagueViewModel()
     
     private init() {
         let gameElement = GameElement(

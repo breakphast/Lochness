@@ -72,18 +72,6 @@ struct Board: View {
         }
         .padding(.horizontal, 16)
     }
-    private var splashScreen: some View {
-        ZStack {
-            Color.main300
-                .ignoresSafeArea()
-            
-            Image(.lochLogo)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-        }
-    }
     private var scrollViewHeader: some View {
         VStack {
             HStack {

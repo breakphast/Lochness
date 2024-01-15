@@ -24,15 +24,18 @@ class LeagueService {
         getLeaguesFromFirestore()
     }
     
-    func makeLeague(name: String, userID: String, size: Int, sport: String, wagerMode: String, playoffMode: String, playoffSize: Int) -> League {
+    func makeLeague(name: String, userID: String, size: Int, sport: String, leagueMode: String, wagerMode: String, playoffMode: String? = nil, playoffSize: Int? = nil, payoutStructure: String? = nil, entryFee: Double? = nil) -> League {
         return League(
             name: name,
             users: [userID],
             size: size,
             sport: sport,
+            leagueMode: leagueMode,
             wagerMode: wagerMode,
             playoffMode: playoffMode,
-            playoffSize: playoffSize
+            playoffSize: playoffSize,
+            payoutStructure: payoutStructure,
+            entryFee: entryFee
         )
     }
     
@@ -56,21 +59,31 @@ class LeagueService {
         let id = data["id"] as? String ?? ""
         let name = data["name"] as? String ?? ""
         let usersArray = data["users"] as? [String] ?? []
-        let size = data["size"] as? Int ?? LeagueSize.four.rawValue
-        let sport = data["sport"] as? String ?? Sport.nfl.rawValue
-        let wagerMode = data["wagerMode"] as? String ?? WagerMode.fixed.rawValue
-        let playoffMode = data["playoffMode"] as? String ?? PlayoffMode.elimination.rawValue
-        let playoffSize = data["playoffSize"] as? Int ?? PlayoffSize.six.rawValue
+        
+        let size = data["size"] as? Int ?? 0
+        let sport = data["sport"] as? String ?? ""
+        
+        let wagerMode = data["wagerMode"] as? String ?? ""
+        let leagueMode = data["leagueMode"] as? String ?? ""
+        
+        let playoffMode = data["playoffMode"] as? String ?? nil
+        let playoffSize = data["playoffSize"] as? Int ?? nil
+        
+        let payoutStructure = data["payoutStructure"] as? String ?? nil
+        let entryFee = data["entryFee"] as? Double ?? nil
         
         return League(
             id: UUID(uuidString: id) ?? UUID(),
             name: name,
             users: usersArray,
             size: size,
-            sport: sport,
+            sport: sport, 
+            leagueMode: leagueMode,
             wagerMode: wagerMode,
             playoffMode: playoffMode,
-            playoffSize: playoffSize
+            playoffSize: playoffSize,
+            payoutStructure: payoutStructure,
+            entryFee: entryFee
         )
     }
 }

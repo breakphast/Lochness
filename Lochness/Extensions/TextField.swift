@@ -15,10 +15,11 @@ struct Border: TextFieldStyle {
     
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(color, lineWidth: lineWidth)
+            .padding(.leading, 16)
+            .padding(.vertical, 10)
+            .background(
+                .white
+                    .shadow(.drop(color: .main700.opacity(0.5), radius: 4)), in: .rect(cornerRadius: cornerRadius)
             )
     }
 }

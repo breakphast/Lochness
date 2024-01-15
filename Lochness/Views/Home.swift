@@ -10,18 +10,24 @@ import SwiftUI
 struct Home: View {
     @EnvironmentObject private var homeViewModel: HomeViewModel
     @EnvironmentObject var betViewModel: BetViewModel
+    @EnvironmentObject var createLeagueViewModel: CreateLeagueViewModel
     
     var body: some View {
-        NavigationStack {
-            TabView {
-                tab(title: "Home", icon: "home", content: Board())
-                tab(title: "My Bets", icon: "myBets", content: MyBetsView())
-                tab(title: "Scores", icon: "scores", content: Text("Scores"))
-                tab(title: "League", icon: "league", content: Text("League"))
+        if homeViewModel.allBetOptions.isEmpty {
+            Color.white
+        } else {
+            NavigationStack {
+                TabView {
+                    tab(title: "Home", icon: "home", content: Board())
+                    tab(title: "My Bets", icon: "myBets", content: MyBetsView())
+                    tab(title: "Scores", icon: "scores", content: Text("Scores"))
+                    tab(title: "League", icon: "league", content: CreateLeagueMainView())
+                }
+                .tint(.main800)
+                .environmentObject(homeViewModel)
+                .environmentObject(betViewModel)
+                .environmentObject(createLeagueViewModel)
             }
-            .tint(.main800)
-            .environmentObject(homeViewModel)
-            .environmentObject(betViewModel)
         }
     }
     
@@ -35,10 +41,24 @@ struct Home: View {
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarBackground(.ultraThickMaterial, for: .tabBar)
     }
+    
+    private var splashScreen: some View {
+        ZStack {
+            Color.main300
+                .ignoresSafeArea()
+            
+            Image(.lochLogo)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+        }
+    }
 }
 
 #Preview {
     Home()
         .environmentObject(Preview.dev.homeViewModel)
         .environmentObject(Preview.dev.betViewModel)
+        .environmentObject(Preview.dev.createLeagueViewModel)
 }
