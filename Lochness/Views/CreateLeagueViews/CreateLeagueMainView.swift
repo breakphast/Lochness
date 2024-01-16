@@ -17,18 +17,18 @@ struct CreateLeagueMainView: View {
 
     var body: some View {
         NavigationStack(path: $viewModel.path) {
-            VStack(spacing: 24) {
+            VStack(spacing: 16) {
                 CreateLeagueHeader(path: $viewModel.path)
                 
-                leagueNameTextField
-                leagueSizeStack
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Sport")
-                        .font(.caption)
-                    DropdownPicker(hint: "Sport", anchor: .bottom, selection: $viewModel.leagueSport, showOptions: $showOptions)
+                VStack(spacing: 24) {
+                    leagueNameTextField
+                    leagueSizeStack
+                    sportDropdown
                 }
                 Spacer()
                 CreateLeagueNextButton(path: $viewModel.path, main: true)
+                    .disabled(viewModel.leagueName.count < 4 || SportOptions(rawValue: viewModel.leagueSport) == nil)
+                    .opacity(viewModel.leagueName.count < 4 || SportOptions(rawValue: viewModel.leagueSport) == nil ? 0.5 : 1)
             }
             .padding()
             .navigationDestination(for: Int.self) { value in
@@ -36,7 +36,11 @@ struct CreateLeagueMainView: View {
                 case 0:
                     CreateLeagueModesView(path: $viewModel.path)
                 case 1:
-                    Text("ello govnah")
+                    if viewModel.leagueMode == .classic {
+                        CreateLeaguePlayoffsView(path: $viewModel.path)
+                    } else {
+                        CreateLeaguePayoutView(path: $viewModel.path)
+                    }
                 default:
                     CreateLeagueModesView(path: $viewModel.path)
                 }
@@ -44,12 +48,20 @@ struct CreateLeagueMainView: View {
         }
     }
     
+    var sportDropdown: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Sport")
+                .font(.caption.bold())
+            DropdownPicker(hint: "Sport", anchor: .bottom, selection: $viewModel.leagueSport, showOptions: $showOptions)
+        }
+    }
+    
     var leagueNameTextField: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("League Name")
-                .font(.caption)
+                .font(.caption.bold())
             TextField("League name", text: $viewModel.leagueName)
-                .textFieldStyle(Border(color: .main500, cornerRadius: 8, lineWidth: 2))
+                .textFieldStyle(Border(color: .main700, cornerRadius: 8, leadingPadding: 16, verticalPadding: 16, fontSize: .body))
                 .autocorrectionDisabled()
         }
     }
@@ -61,9 +73,10 @@ struct CreateLeagueMainView: View {
                 .font(.caption)
                 .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
-                Spacer()
                 ForEach(LeagueSizeOptions.allCases, id: \.self) { size in
-                    LeagueSizeCircle(size: size.rawValue, selectedLeagueSize: $viewModel.leagueSize)
+                    Spacer()
+                    SizeCircle(sizeOption: size, selectedSize: $viewModel.leagueSize)
+                    Spacer()
                 }
             }
         }

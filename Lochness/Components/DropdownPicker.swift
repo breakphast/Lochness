@@ -48,7 +48,7 @@ struct DropdownPicker: View {
                 )
                 .frame(height: size.height, alignment: anchor == .top ? .bottom : .top)
             }
-            .frame(height: 50)
+            .frame(height: 56)
         }
     }
     

@@ -24,7 +24,7 @@ class LeagueService {
         getLeaguesFromFirestore()
     }
     
-    func makeLeague(name: String, userID: String, size: Int, sport: String, leagueMode: String, wagerMode: String, playoffMode: String? = nil, playoffSize: Int? = nil, payoutStructure: String? = nil, entryFee: Double? = nil) -> League {
+    func makeLeague(name: String, userID: String, size: Int, sport: String, leagueMode: String, wagerMode: String, playoffMode: String?, playoffSize: Int?, payoutStructure: String?, entryFee: Double?) -> League {
         return League(
             name: name,
             users: [userID],

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class League: Identifiable, Codable {
     var id = UUID()
@@ -60,26 +61,52 @@ enum LeagueMode: String {
     
     static let secondaryTexts: [LeagueMode: String] = [
         .classic : "Compete in a full season league for long-term strategy and engagement",
-        .flex : "Join quick, variable-duration leagues for fast-paced, adaptable play."
+        .flex : "Join quick, variable-duration leagues for fast-paced, adaptable play"
     ]
 }
 
 enum WagerMode: String {
     case fixed = "fixed"
-    case bankroll = "bankroll"
+    case bankroll = "bankroll builder"
+    
+    static let secondaryTexts: [WagerMode: String] = [
+        .bankroll: "Receive a starting bankroll to spend freely and build upon throughout the league's set duration",
+        .fixed: "Receive a fixed amount of bets to place in attempt to earn points"
+    ]
 }
 
 enum PayoutStructure: String {
     case topHeavy = "top-Heavy"
     case balanced = "balanced"
+    
+    static let secondaryTexts: [PayoutStructure: String] = [
+        .topHeavy : "Winner takes most, with significant rewards for first place and smaller prizes for runners-up",
+        .balanced : "Equitable distribution of winnings, with first place earning more but a fair share for others."
+    ]
 }
 
 enum PlayoffMode: String {
     case elimination = "elimination"
     case continuous = "continuous"
+    
+    static let secondaryTexts: [PlayoffMode: String] = [
+        .elimination : "Lowest scoring players are eliminated each week",
+        .continuous : "Points are tallied over several weeks"
+    ]
 }
 
-enum PlayoffSize: Int {
+enum PlayoffSize: Int, CaseIterable {
+    case two = 2
+    case four = 4
     case six = 6
     case eight = 8
+}
+
+protocol SizeOptionRepresentable: Hashable {
+    var displayValue: Int { get }
+}
+
+protocol ModeRepresentable {
+    var title: String { get }
+    var secondaryText: String { get }
 }
