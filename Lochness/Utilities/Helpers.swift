@@ -16,6 +16,28 @@ class Helpers {
         Self.decoder.dateDecodingStrategy = .iso8601
     }
     
+    static func generateOrdinalStrings(upTo number: Int) -> [String] {
+        var stringArray: [String] = []
+        
+        for i in 1...number {
+            let ordinal = i
+            var suffix = "th"
+            
+            if i == 1 {
+                suffix = "st"
+            } else if i == 2 {
+                suffix = "nd"
+            } else if i == 3 {
+                suffix = "rd"
+            }
+            
+            let string = "\(ordinal)\(suffix)"
+            stringArray.append(string)
+        }
+        
+        return stringArray
+    }
+    
     static let nflTeams = [
         "Miami Dolphins": "MIA Dolphins",
         "New England Patriots": "NE Patriots",

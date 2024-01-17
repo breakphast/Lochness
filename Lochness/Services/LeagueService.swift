@@ -39,6 +39,13 @@ class LeagueService {
         )
     }
     
+    func addUserToLeague(user: User, league: League) async throws {
+        if let leagueReference {
+            let documentRef = leagueReference.document(league.id.uuidString)
+            try await documentRef.updateData(["users": FieldValue.arrayUnion(["EKWIEIWKIWKEJI"])])
+        }
+    }
+    
     func add(league: League) async throws {
         if let leagueReference {
             try await FirebaseManager.add(item: league, id: league.id.uuidString, to: leagueReference)

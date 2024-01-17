@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "material-symbols_lock.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

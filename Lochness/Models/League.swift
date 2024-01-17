@@ -38,6 +38,24 @@ class League: Identifiable, Codable {
         self.payoutStructure = payoutStructure
         self.entryFee = entryFee
     }
+    
+    static var fixedBetsRules: [String] = [
+        "Each player is given a fixed amount of bets upon joining a contest, which can be placed on the league’s focused sport over the scheduled duration.",
+        "Bets can be placed on spreads, moneylines, and totals.",
+        "Each bet is scored on a 10-point scale, adjusted according to the result and odds.",
+        "You must use all your bets; otherwise, your final score will be deducted 10 points for each unused bet."
+    ]
+
+    // Bankroll Credits Rules
+    static var bankrollCreditsRules: [String] = [
+        "Each player receives $100 in bankroll credits.",
+        "The objective is to increase your bankroll as much as possible during the duration of the league.",
+        "The top 3 players with the highest percentage change in their bankroll are paid out accordingly.",
+        "Place bets for the league’s focused sport using your bankroll during the day(s) of your league’s schedule.",
+        "You must wager at least $100 in total during the league's duration; otherwise, the unused amount will be deducted from your final bankroll.",
+        "Winnings from bets are added to your bankroll and can be used to place new bets, following the structure of traditional betting.",
+        "If your bankroll reaches $0 with no active bets, that becomes your final score, and you can no longer place bets."
+    ]
 }
 
 enum SportOptions: String, CaseIterable {

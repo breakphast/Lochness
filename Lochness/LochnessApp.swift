@@ -20,7 +20,8 @@ struct LochnessApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CreateLeagueMainView()
+            Home()
+                .preferredColorScheme(.light)
                 .environmentObject(homeViewModel)
                 .environmentObject(betViewModel)
                 .environmentObject(createLeagueViewModel)

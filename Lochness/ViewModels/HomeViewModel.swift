@@ -95,6 +95,12 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    func addUserToLeague(league: League) async throws {
+        if let activeUser {
+            try await leagueService.addUserToLeague(user: activeUser, league: league)
+        }
+    }
+    
     func updateUserPoints(contest: Contest, points: Double) async throws {
         if let activeUser {
             try await contestService.updateUserPoints(contestID: contest.id.uuidString, userID: activeUser.id.uuidString, points: points)

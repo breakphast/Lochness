@@ -20,7 +20,10 @@ struct Home: View {
                 TabView {
                     tab(title: "Home", icon: "home", content: Board())
                     tab(title: "My Bets", icon: "myBets", content: MyBetsView())
-                    tab(title: "Scores", icon: "scores", content: Text("Scores"))
+                    if let league = homeViewModel.activeLeague {
+                        tab(title: "Scores", icon: "scores", content: LeagueDetailsView(league: league))
+                            .toolbar(.hidden, for: .tabBar)
+                    }
                     tab(title: "League", icon: "league", content: CreateLeagueMainView())
                 }
                 .tint(.main800)

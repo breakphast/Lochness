@@ -15,6 +15,9 @@
 		3E2BD41C2B55FE5700CC5FBC /* CreateLeaguePlayoffsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD41B2B55FE5700CC5FBC /* CreateLeaguePlayoffsView.swift */; };
 		3E2BD41E2B56E4AF00CC5FBC /* ModeBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD41D2B56E4AF00CC5FBC /* ModeBox.swift */; };
 		3E2BD4202B56E53B00CC5FBC /* League+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD41F2B56E53B00CC5FBC /* League+Extensions.swift */; };
+		3E2BD4222B57240600CC5FBC /* MyLeaguesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD4212B57240600CC5FBC /* MyLeaguesView.swift */; };
+		3E2BD4242B572E8100CC5FBC /* AllLeaguesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD4232B572E8100CC5FBC /* AllLeaguesView.swift */; };
+		3E2BD4262B5762DA00CC5FBC /* LeagueDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD4252B5762DA00CC5FBC /* LeagueDetailsView.swift */; };
 		3E411AC82B3EFC5000018750 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411AC72B3EFC5000018750 /* User.swift */; };
 		3E411ACA2B3EFF9600018750 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411AC92B3EFF9600018750 /* UserService.swift */; };
 		3E411ACC2B3F075700018750 /* BetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411ACB2B3F075700018750 /* BetComponent.swift */; };
@@ -87,6 +90,9 @@
 		3E2BD41B2B55FE5700CC5FBC /* CreateLeaguePlayoffsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeaguePlayoffsView.swift; sourceTree = "<group>"; };
 		3E2BD41D2B56E4AF00CC5FBC /* ModeBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeBox.swift; sourceTree = "<group>"; };
 		3E2BD41F2B56E53B00CC5FBC /* League+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "League+Extensions.swift"; sourceTree = "<group>"; };
+		3E2BD4212B57240600CC5FBC /* MyLeaguesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLeaguesView.swift; sourceTree = "<group>"; };
+		3E2BD4232B572E8100CC5FBC /* AllLeaguesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllLeaguesView.swift; sourceTree = "<group>"; };
+		3E2BD4252B5762DA00CC5FBC /* LeagueDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsView.swift; sourceTree = "<group>"; };
 		3E411AC72B3EFC5000018750 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3E411AC92B3EFF9600018750 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		3E411ACB2B3F075700018750 /* BetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetComponent.swift; sourceTree = "<group>"; };
@@ -243,6 +249,9 @@
 				3E9874252B3715E900A8FAF1 /* Board.swift */,
 				3EB098152B4EF257001EB346 /* Betslip.swift */,
 				3EF07A4F2B51BC44008F74E3 /* MyBetsView.swift */,
+				3E2BD4212B57240600CC5FBC /* MyLeaguesView.swift */,
+				3E2BD4232B572E8100CC5FBC /* AllLeaguesView.swift */,
+				3E2BD4252B5762DA00CC5FBC /* LeagueDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -451,6 +460,7 @@
 				3E411ACC2B3F075700018750 /* BetComponent.swift in Sources */,
 				3E5C23232B3CAB6000B642BB /* FirebaseManager.swift in Sources */,
 				3E9874262B3715E900A8FAF1 /* Board.swift in Sources */,
+				3E2BD4262B5762DA00CC5FBC /* LeagueDetailsView.swift in Sources */,
 				3EE9B5C92B4C84EE00250045 /* BetslipBar.swift in Sources */,
 				3E411ACA2B3EFF9600018750 /* UserService.swift in Sources */,
 				3E14A45D2B44570E00E344A1 /* LeagueService.swift in Sources */,
@@ -473,6 +483,7 @@
 				3E14A45F2B44616500E344A1 /* Contest.swift in Sources */,
 				3EF07A502B51BC44008F74E3 /* MyBetsView.swift in Sources */,
 				3EFF21072B3893D500952416 /* MatchupRow.swift in Sources */,
+				3E2BD4242B572E8100CC5FBC /* AllLeaguesView.swift in Sources */,
 				3E2BD41C2B55FE5700CC5FBC /* CreateLeaguePlayoffsView.swift in Sources */,
 				3E98742E2B37168C00A8FAF1 /* NetworkingManager.swift in Sources */,
 				3EE9B5C12B4C4EEE00250045 /* Color.swift in Sources */,
@@ -494,6 +505,7 @@
 				3E14A45B2B44568E00E344A1 /* League.swift in Sources */,
 				3EF07A652B55BEE5008F74E3 /* UIApplication.swift in Sources */,
 				3EFF21042B388F2400952416 /* BetService.swift in Sources */,
+				3E2BD4222B57240600CC5FBC /* MyLeaguesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +618,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone[sdk=iphoneos*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -688,7 +701,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -699,7 +712,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -718,7 +731,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -729,7 +742,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

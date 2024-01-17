@@ -11,7 +11,7 @@ class CreateLeagueViewModel: ObservableObject {
     @Published var leagueName: String = ""
     @Published var leagueSize: LeagueSizeOptions = .eight
     @Published var leagueSport = "Select Sport"
-    @Published var leagueMode: LeagueMode = .classic
+    @Published var leagueMode: LeagueMode = .flex
     @Published var wagerMode: WagerMode = .bankroll
     
     @Published var playoffMode: PlayoffMode = .elimination
