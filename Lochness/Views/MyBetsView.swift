@@ -54,7 +54,7 @@ struct MyBetsView: View {
             .foregroundStyle(.white)
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("$\(bet.wager?.twoDecimalString ?? 0.0.oneDecimalString)")
+                    Text("$\(bet.wager.twoDecimalString)")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)

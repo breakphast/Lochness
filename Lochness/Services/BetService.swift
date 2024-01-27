@@ -24,15 +24,16 @@ class BetService {
         getBetsFromFirestore()
     }
         
-    func makeBet(from betOption: BetOption, user: User, league: String?, wager: Double? = nil) -> Bet {
+    func makeBet(from betOption: BetOption, user: User, league: String?, wager: Double) -> Bet {
         return Bet(
+            id: betOption.id,
             type: betOption.betType.rawValue,
             result: BetResult.pending.rawValue,
             line: betOption.line ?? nil,
             odds: betOption.odds,
             points: 10, 
-            wager: wager ?? nil,
-            payout: Self.calculatePayout(odds: betOption.odds, wager: wager ?? 0).payout,
+            wager: wager,
+            payout: Self.calculatePayout(odds: betOption.odds, wager: wager).payout,
             team: betOption.team,
             matchupTeamsDescription: betOption.matchupTeamsDescription, 
             userID: user.id.uuidString,

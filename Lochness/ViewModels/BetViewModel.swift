@@ -13,6 +13,8 @@ class BetViewModel: ObservableObject {
     @Published var allBets = [Bet]()
     @Published var allScores = [Score]()
     @Published var selectedBetOptions = [BetOption]()
+    @Published var readyBets = [Bet]()
+    @Published var totalWager: Double = 0
     
     var betslipActive = false
     
@@ -50,10 +52,21 @@ class BetViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        $readyBets
+            .sink { [weak self] readyBets in
+                guard !readyBets.isEmpty else {
+                    self?.totalWager = 0
+                    return
+                }
+                self?.totalWager = readyBets.reduce(0) { (sum, bet) in
+                    sum + (bet.wager)
+                }
+            }
+            .store(in: &cancellables)
     }
     
-    func addBet(from betOption: BetOption, for user: User, to league: League) async throws {
-        let bet = betService.makeBet(from: betOption, user: user, league: league.id.uuidString)
+    func addBet(from betOption: BetOption, for user: User, to league: League, wager: Double) async throws {
+        let bet = betService.makeBet(from: betOption, user: user, league: league.id.uuidString, wager: wager)
         try await betService.add(bet: bet)
     }
     
@@ -65,14 +78,14 @@ class BetViewModel: ObservableObject {
         }
     }
     
-    func placeBet(_ betOption: BetOption, user: User, wager: Double) async throws {
-        let bet = betService.makeBet(from: betOption, user: user, league: nil, wager: wager)
+    func placeBet(_ bet: Bet, user: User, wager: Double) async throws {
         try await betService.add(bet: bet)
 
         // Dispatching back to the main thread
         await MainActor.run {
             withAnimation {
-                selectedBetOptions.removeAll(where: { $0.id.uuidString == betOption.id.uuidString })
+                selectedBetOptions.removeAll(where: { $0.id == bet.id })
+                readyBets.removeAll(where: { $0.id == bet.id })
             }
         }
     }

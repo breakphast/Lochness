@@ -118,7 +118,6 @@ struct MyLeaguesView: View {
         .onTapGesture {
             homeViewModel.activeLeague = league
             print("Active League: ", league.name)
-            print(homeViewModel.activeLeague == nil)
         }
     }
     

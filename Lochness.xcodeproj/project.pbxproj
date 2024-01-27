@@ -11,6 +11,7 @@
 		3E14A45D2B44570E00E344A1 /* LeagueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E14A45C2B44570E00E344A1 /* LeagueService.swift */; };
 		3E14A45F2B44616500E344A1 /* Contest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E14A45E2B44616500E344A1 /* Contest.swift */; };
 		3E14A4612B44662400E344A1 /* ContestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E14A4602B44662400E344A1 /* ContestService.swift */; };
+		3E1EEA242B6590720084E9DA /* BetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1EEA232B6590720084E9DA /* BetCard.swift */; };
 		3E2BD41A2B55E10F00CC5FBC /* CreateLeaguePayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD4192B55E10F00CC5FBC /* CreateLeaguePayoutView.swift */; };
 		3E2BD41C2B55FE5700CC5FBC /* CreateLeaguePlayoffsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD41B2B55FE5700CC5FBC /* CreateLeaguePlayoffsView.swift */; };
 		3E2BD41E2B56E4AF00CC5FBC /* ModeBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BD41D2B56E4AF00CC5FBC /* ModeBox.swift */; };
@@ -88,6 +89,7 @@
 		3E14A45C2B44570E00E344A1 /* LeagueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueService.swift; sourceTree = "<group>"; };
 		3E14A45E2B44616500E344A1 /* Contest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contest.swift; sourceTree = "<group>"; };
 		3E14A4602B44662400E344A1 /* ContestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestService.swift; sourceTree = "<group>"; };
+		3E1EEA232B6590720084E9DA /* BetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetCard.swift; sourceTree = "<group>"; };
 		3E2BD4192B55E10F00CC5FBC /* CreateLeaguePayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeaguePayoutView.swift; sourceTree = "<group>"; };
 		3E2BD41B2B55FE5700CC5FBC /* CreateLeaguePlayoffsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLeaguePlayoffsView.swift; sourceTree = "<group>"; };
 		3E2BD41D2B56E4AF00CC5FBC /* ModeBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeBox.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 		3EFF21052B3893CD00952416 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				3E1EEA232B6590720084E9DA /* BetCard.swift */,
 				3EFF21062B3893D500952416 /* MatchupRow.swift */,
 				3E411ACB2B3F075700018750 /* BetComponent.swift */,
 				3EE9B5C22B4C51FE00250045 /* BetButton.swift */,
@@ -504,6 +507,7 @@
 				3EFF20FF2B388E0900952416 /* Bet.swift in Sources */,
 				3EF07A5F2B55B6C9008F74E3 /* CreateLeagueNextButton.swift in Sources */,
 				3EF07A522B51DE29008F74E3 /* Home.swift in Sources */,
+				3E1EEA242B6590720084E9DA /* BetCard.swift in Sources */,
 				3E51AD082B3C7E170059E23C /* Preview.swift in Sources */,
 				3EE9B5C32B4C51FE00250045 /* BetButton.swift in Sources */,
 				3EB098162B4EF257001EB346 /* Betslip.swift in Sources */,

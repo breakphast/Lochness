@@ -29,10 +29,12 @@ struct Board: View {
                     }
             }
         }
-        .sheet(isPresented: $showBetslip) {
+        .sheet(isPresented: $showBetslip, onDismiss: {
+            betViewModel.readyBets.removeAll()
+        }, content: {
             Betslip()
                 .environmentObject(betViewModel)
-        }
+        })
         .fullScreenCover(isPresented: $showMyBets) {
             MyBetsView()
                 .environmentObject(betViewModel)
