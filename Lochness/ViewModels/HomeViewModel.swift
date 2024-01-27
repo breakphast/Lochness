@@ -18,10 +18,8 @@ class HomeViewModel: ObservableObject {
     
     @Published var isLoading = true
     
-    var activeUser: User? = nil
-    var activeLeague: League? = nil
-    var activeContest: Contest? = nil
-    var contestUsers: [User]? = nil
+    @Published var activeUser: User? = nil
+    @Published var activeLeague: League? = nil
     
     private let gameService = GameService()
     private let betService = BetService()
@@ -63,28 +61,14 @@ class HomeViewModel: ObservableObject {
         leagueService.$allLeagues
             .sink { [weak self] returnedLeagues in
                 guard let self = self else { return }
-                self.allLeagues = returnedLeagues
-                if let league = returnedLeagues.first {
-                    self.activeLeague = league
-                    print("Active League:", league.id.uuidString)
+                if let user = activeUser {
+                    let userLeagues = returnedLeagues.map { $0.users.contains(user.id.uuidString)}
+                    self.allLeagues = returnedLeagues
                 }
-            }
-            .store(in: &cancellables)
-        
-        contestService.$allContests
-            .sink { [weak self] returnedContests in
-                guard let self = self else { return }
-                self.allContests = returnedContests
-                if let contest = returnedContests.first {
-                    self.activeContest = contest
-                    self.contestUsers = self.allUsers.filter { user in
-                        contest.enteredUsers.contains(user.id.uuidString)
-                    }.sorted { (user1, user2) -> Bool in
-                        let user1Points = contest.points[user1.id.uuidString] ?? 0
-                        let user2Points = contest.points[user2.id.uuidString] ?? 0
-                        return user1Points > user2Points
-                    }
-                }
+//                if let league = returnedLeagues.first {
+//                    self.activeLeague = league
+//                    print("Active League:", league.id.uuidString)
+//                }
             }
             .store(in: &cancellables)
     }

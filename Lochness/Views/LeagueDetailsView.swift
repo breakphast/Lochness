@@ -12,6 +12,7 @@ struct LeagueDetailsView: View {
     @EnvironmentObject private var homeViewModel: HomeViewModel
     @Environment(\.dismiss) var dismiss
     @State private var activeTab: LeagueDetailsTabs = .rules
+    @State private var navIndicatorOffset: CGFloat = 0
     
     let league: League
     
@@ -39,23 +40,23 @@ struct LeagueDetailsView: View {
                         case .prizes:
                             prizes(size)
                         case .players:
-                            prizes(size)
+                            users(size)
                         }
                     }
                     
-                    Button {
-                        
-                    } label: {
-                        Text("Join League")
-                            .bold()
-                            .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
-                            .foregroundStyle(.main800)
-                            .background(
-                                .white
-                                    .shadow(.drop(color: .main500.opacity(0.5), radius: 4)), in: .rect(cornerRadius: 8)
-                            )
-                    }
-                    .padding(.horizontal, 40)
+//                    Button {
+//                        
+//                    } label: {
+//                        Text("Join League")
+//                            .bold()
+//                            .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
+//                            .foregroundStyle(.main800)
+//                            .background(
+//                                .white
+//                                    .shadow(.drop(color: .main500.opacity(0.5), radius: 4)), in: .rect(cornerRadius: 8)
+//                            )
+//                    }
+//                    .padding(.horizontal, 40)
                 }
                 .frame(width: size.width)
             }
@@ -66,13 +67,13 @@ struct LeagueDetailsView: View {
     @ViewBuilder
     private func header(_ size: CGSize) -> some View {
         ZStack {
-            Image(systemName: "xmark")
-                .font(.title2)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading)
-                .onTapGesture {
-                    dismiss()
-                }
+//            Image(systemName: "xmark")
+//                .font(.title2)
+//                .frame(maxWidth: .infinity, alignment: .leading)
+//                .padding(.leading)
+//                .onTapGesture {
+//                    dismiss()
+//                }
             Text("League Details")
         }
         .font(.title2)
@@ -82,7 +83,7 @@ struct LeagueDetailsView: View {
     private func mainInfoStack(_ size: CGSize) -> some View {
         ZStack {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Silver Dollar League - Bankroll Builder")
+                Text("\(league.name) - \(league.wagerMode.capitalized)")
                     .bold()
                     .foregroundStyle(.main800)
                 
@@ -134,19 +135,21 @@ struct LeagueDetailsView: View {
                 
                 HStack(spacing: 40) {
                     ForEach(LeagueDetailsTabs.allCases, id: \.self) { tab in
-                        Button {
-                            withAnimation {
+                        VStack(spacing: 4) {
+                            Button {
                                 activeTab = tab
+                            } label: {
+                                Text(tab.rawValue)
+                                    .font(.title2)
+                                    .foregroundStyle(.main500)
                             }
-                        } label: {
-                            Text(tab.rawValue)
-                                .fontWeight(activeTab == tab ? .bold : .none)
-                                .font(.title2)
-                                .foregroundStyle(.main500)
+                            RoundedRectangle(cornerRadius: 2)
+                                .frame(width: 80, height: 4)
+                                .foregroundStyle(.main700.opacity(activeTab == tab ? 1 : 0))
                         }
                     }
                 }
-                .frame(width: size.width)
+                .frame(maxWidth: .infinity)
             }
             .padding()
             .frame(width: size.width, alignment: .leading)
@@ -172,6 +175,34 @@ struct LeagueDetailsView: View {
                                 .fontWeight(.semibold)
                         }
                         .foregroundStyle(.main800)
+                        RoundedRectangle(cornerRadius: 0.5)
+                            .frame(height: 1)
+                            .foregroundStyle(.main800.opacity(0.1))
+                            .padding(.trailing, -24)
+                    }
+                }
+                .padding()
+            }
+            .background(.white)
+            .scrollIndicators(.hidden)
+        }
+    }
+    private func users(_ size: CGSize) -> some View {
+        ZStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    ForEach(league.users, id: \.self) { user in
+                        HStack {
+                            Image(.lochLogo)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                            
+                            Text(homeViewModel.allUsers.first(where: {$0.id.uuidString == user})?.username ?? "")
+                        }
+                        .foregroundStyle(.main800)
+                        .bold()
                         RoundedRectangle(cornerRadius: 0.5)
                             .frame(height: 1)
                             .foregroundStyle(.main800.opacity(0.1))
@@ -317,17 +348,17 @@ struct LeagueDetailsView: View {
             }
             .scrollIndicators(.hidden)
         }
-        .overlay(alignment: .bottom) {
-            Rectangle()
-                .fill(.main100.opacity(0.3))
-                .frame(height: 4)
-                .shadow(color: .main900, radius: 4)
-        }
+//        .overlay(alignment: .bottom) {
+//            Rectangle()
+//                .fill(.main100.opacity(0.3))
+//                .frame(height: 4)
+//                .shadow(color: .main900, radius: 4)
+//        }
     }
 }
 
 #Preview {
-    LeagueDetailsView(league: League(name: "", users: [""], size: 10, sport: "NFL", leagueMode: "", wagerMode: WagerMode.bankroll.rawValue, entryFee: 20.0))
+    LeagueDetailsView(league: League(name: "Silver's", users: ["C7AFF3CB-E4BF-49B4-B306-8F4E81D74493"], size: 10, sport: "NFL", leagueMode: "", wagerMode: WagerMode.bankroll.rawValue, entryFee: 20.0))
         .environmentObject(Preview.dev.homeViewModel)
         .environmentObject(Preview.dev.betViewModel)
 }

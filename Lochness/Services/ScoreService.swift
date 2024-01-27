@@ -100,15 +100,15 @@ class ScoreService {
                 let scores = returnedScores.map { Score(scoreElement: $0) }
                 self.allScores = scores
                 
-                Task {
-                    for score in scores {
-                        do {
-                            try await self.add(score: score)
-                        } catch {
-                            print("Error adding score: \(error.localizedDescription)")
-                        }
-                    }
-                }
+//                Task {
+//                    for score in scores {
+//                        do {
+//                            try await self.add(score: score)
+//                        } catch {
+//                            print("Error adding score: \(error.localizedDescription)")
+//                        }
+//                    }
+//                }
             })
     }
     

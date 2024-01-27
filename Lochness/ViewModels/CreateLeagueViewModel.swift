@@ -32,10 +32,10 @@ class CreateLeagueViewModel: ObservableObject {
         path.append(path.count)
     }
     
-    func createLeague() {
+    func createLeague(userID: String) {
         let league = LeagueService().makeLeague(
             name: leagueName,
-            userID: "2m1k2m1k",
+            userID: userID,
             size: leagueSize.rawValue,
             sport: leagueSport,
             leagueMode: leagueMode.rawValue,

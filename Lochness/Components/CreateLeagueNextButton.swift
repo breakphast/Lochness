@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateLeagueNextButton: View {
+    @EnvironmentObject private var homeViewModel: HomeViewModel
     @EnvironmentObject private var viewModel: CreateLeagueViewModel
     @Binding var path: [Int]
     
@@ -19,7 +20,9 @@ struct CreateLeagueNextButton: View {
             if main {
                 viewModel.mainAppend()
             } else if last {
-                viewModel.createLeague()
+                if let user = homeViewModel.activeUser {
+                    viewModel.createLeague(userID: user.id.uuidString)
+                }
             } else {
                 viewModel.childAppend()
             }

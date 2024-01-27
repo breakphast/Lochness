@@ -22,6 +22,10 @@ class LeagueService {
     init() {
         self.leagueReference = db.collection("leagues")
         getLeaguesFromFirestore()
+//        Task {
+//            let league = makeLeague(name: "Bron Bron Bron", userID: "C7AFF3CB-E4BF-49B4-B306-8F4E81D74493", size: 8, sport: "NBA", leagueMode: LeagueMode.flex.rawValue, wagerMode: WagerMode.bankroll.rawValue, playoffMode: nil, playoffSize: nil, payoutStructure: PayoutStructure.topHeavy.rawValue, entryFee: 50)
+//            try await add(league: league)
+//        }
     }
     
     func makeLeague(name: String, userID: String, size: Int, sport: String, leagueMode: String, wagerMode: String, playoffMode: String?, playoffSize: Int?, payoutStructure: String?, entryFee: Double?) -> League {
@@ -42,7 +46,7 @@ class LeagueService {
     func addUserToLeague(user: User, league: League) async throws {
         if let leagueReference {
             let documentRef = leagueReference.document(league.id.uuidString)
-            try await documentRef.updateData(["users": FieldValue.arrayUnion(["EKWIEIWKIWKEJI"])])
+            try await documentRef.updateData(["users": FieldValue.arrayUnion([user.id.uuidString])])
         }
     }
     

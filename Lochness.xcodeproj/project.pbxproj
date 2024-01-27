@@ -21,6 +21,7 @@
 		3E411AC82B3EFC5000018750 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411AC72B3EFC5000018750 /* User.swift */; };
 		3E411ACA2B3EFF9600018750 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411AC92B3EFF9600018750 /* UserService.swift */; };
 		3E411ACC2B3F075700018750 /* BetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E411ACB2B3F075700018750 /* BetComponent.swift */; };
+		3E4BB63D2B60A2B300D38A64 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4BB63C2B60A2B300D38A64 /* WebView.swift */; };
 		3E51AD062B3C5FD10059E23C /* nflOddsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E51AD052B3C5FD10059E23C /* nflOddsData.json */; };
 		3E51AD082B3C7E170059E23C /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51AD072B3C7E170059E23C /* Preview.swift */; };
 		3E51AD0A2B3C88AA0059E23C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E51AD092B3C88AA0059E23C /* GoogleService-Info.plist */; };
@@ -65,6 +66,7 @@
 		3EF07A612B55B894008F74E3 /* DropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A602B55B894008F74E3 /* DropdownPicker.swift */; };
 		3EF07A632B55B8A5008F74E3 /* SizeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A622B55B8A5008F74E3 /* SizeCircle.swift */; };
 		3EF07A652B55BEE5008F74E3 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF07A642B55BEE5008F74E3 /* UIApplication.swift */; };
+		3EF8B8E22B58BE2F00F27BD9 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8B8E12B58BE2F00F27BD9 /* Tab.swift */; };
 		3EFF20FF2B388E0900952416 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF20FE2B388E0900952416 /* Bet.swift */; };
 		3EFF21022B388EEE00952416 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF21012B388EEE00952416 /* Double.swift */; };
 		3EFF21042B388F2400952416 /* BetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF21032B388F2400952416 /* BetService.swift */; };
@@ -96,6 +98,7 @@
 		3E411AC72B3EFC5000018750 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3E411AC92B3EFF9600018750 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		3E411ACB2B3F075700018750 /* BetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetComponent.swift; sourceTree = "<group>"; };
+		3E4BB63C2B60A2B300D38A64 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		3E51AD052B3C5FD10059E23C /* nflOddsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = nflOddsData.json; sourceTree = "<group>"; };
 		3E51AD072B3C7E170059E23C /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		3E51AD092B3C88AA0059E23C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		3EF07A602B55B894008F74E3 /* DropdownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownPicker.swift; sourceTree = "<group>"; };
 		3EF07A622B55B8A5008F74E3 /* SizeCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCircle.swift; sourceTree = "<group>"; };
 		3EF07A642B55BEE5008F74E3 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		3EF8B8E12B58BE2F00F27BD9 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		3EFF20FE2B388E0900952416 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
 		3EFF21012B388EEE00952416 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		3EFF21032B388F2400952416 /* BetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetService.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 				3E411AC72B3EFC5000018750 /* User.swift */,
 				3E14A45A2B44568E00E344A1 /* League.swift */,
 				3E14A45E2B44616500E344A1 /* Contest.swift */,
+				3EF8B8E12B58BE2F00F27BD9 /* Tab.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				3E2BD4212B57240600CC5FBC /* MyLeaguesView.swift */,
 				3E2BD4232B572E8100CC5FBC /* AllLeaguesView.swift */,
 				3E2BD4252B5762DA00CC5FBC /* LeagueDetailsView.swift */,
+				3E4BB63C2B60A2B300D38A64 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				3EE9B5C92B4C84EE00250045 /* BetslipBar.swift in Sources */,
 				3E411ACA2B3EFF9600018750 /* UserService.swift in Sources */,
 				3E14A45D2B44570E00E344A1 /* LeagueService.swift in Sources */,
+				3EF8B8E22B58BE2F00F27BD9 /* Tab.swift in Sources */,
 				3EE9B5CB2B4C881800250045 /* TabBarButton.swift in Sources */,
 				3E98742C2B37165400A8FAF1 /* Game.swift in Sources */,
 				3E98742A2B37162900A8FAF1 /* GameService.swift in Sources */,
@@ -501,6 +508,7 @@
 				3EE9B5C32B4C51FE00250045 /* BetButton.swift in Sources */,
 				3EB098162B4EF257001EB346 /* Betslip.swift in Sources */,
 				3E5C23292B3CC4B200B642BB /* ScoreService.swift in Sources */,
+				3E4BB63D2B60A2B300D38A64 /* WebView.swift in Sources */,
 				3EE9B5C72B4C75BD00250045 /* BetViewModel.swift in Sources */,
 				3E14A45B2B44568E00E344A1 /* League.swift in Sources */,
 				3EF07A652B55BEE5008F74E3 /* UIApplication.swift in Sources */,

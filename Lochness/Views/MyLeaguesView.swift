@@ -19,15 +19,15 @@ struct MyLeaguesView: View {
             GeometryReader { geo in
                 let size = geo.size
                 
-                VStack(spacing: 0) {
+                VStack {
                     header(size)
-                    if homeViewModel.allLeagues.isEmpty {
+                    if !homeViewModel.allLeagues.isEmpty {
+                        leaguesScrollView(size)
+                    } else {
                         Text("No Leagues")
                             .padding(.top, 120)
                             .bold()
                             .foregroundStyle(.main800)
-                    } else {
-                        leaguesScrollView(size)
                     }
                 }
                 .frame(width: size.width)
@@ -81,7 +81,7 @@ struct MyLeaguesView: View {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text("2 of 10")
+                    Text("\(league.users.count) of \(league.size)")
                     Text("Entries")
                         .font(.caption)
                         .foregroundStyle(.main100)
@@ -89,7 +89,7 @@ struct MyLeaguesView: View {
                 }
                 Spacer()
                 VStack {
-                    Text("$50")
+                    Text("$\(league.entryFee?.noDecimalString ?? "")")
                     Text("Entry Fee")
                         .font(.caption)
                         .foregroundStyle(.main100)
@@ -115,22 +115,27 @@ struct MyLeaguesView: View {
                 .fill(.main500)
                 .stroke(.main800, lineWidth: 2)
         )
-        .padding(.horizontal)
+        .onTapGesture {
+            homeViewModel.activeLeague = league
+            print("Active League: ", league.name)
+            print(homeViewModel.activeLeague == nil)
+        }
     }
     
     private func leaguesScrollView(_ size: CGSize) -> some View {
         ScrollView {
             if let _ = homeViewModel.activeUser {
-                VStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Select League")
+                        .font(.caption.bold())
+                        .foregroundStyle(.main800.opacity(0.7))
+                        .padding(.leading, 4)
                     ForEach(homeViewModel.allLeagues, id: \.id) { league in
-                        leagueCard(size, league: league)
-                        leagueCard(size, league: league)
-                        leagueCard(size, league: league)
-                        leagueCard(size, league: league)
                         leagueCard(size, league: league)
                     }
                 }
                 .padding(.top, 24)
+                .padding(.horizontal)
             }
         }
         .scrollIndicators(.hidden)
